@@ -11,7 +11,7 @@ Strona internetowa i logo dla firmy projektowo-wykonawczej z Ełku. Projekt i re
 
 **Podgląd strony:** https://dmindabrowski.github.io/instalacje-sanitarne-karol-kozicki/
 
-Podgląd odświeża się sam po każdej zmianie wysłanej do tego repozytorium. To wersja robocza: część danych jest przykładowa (lista niżej), a wyszukiwarki jej nie indeksują.
+To wersja robocza do oglądania i uwag: część danych jest jeszcze przykładowa (lista niżej).
 
 ## Klient
 
@@ -33,7 +33,7 @@ Obok znaku stoi nazwa firmy (pismo IBM Plex Sans) i nazwisko właściciela wersa
 
 - **Kolory:** tylko czerń `#0B0B0C`, biel `#FFFFFF` i szarość `#686C70` dla nazwiska. Nie ma koloru firmowego.
 - **Wersje:** logo podstawowe, logo odwrócone na ciemne tło i sam znak do ikon i profili.
-- **Pliki:** SVG do druku i PNG do dokumentów, w katalogu [`logo/`](logo/). Napis jest zamieniony na krzywe, więc do drukarni nie trzeba dołączać fontu.
+- **Pliki:** wersje do druku i do dokumentów są w katalogu [`logo/`](logo/).
 
 Pełny opis logo, z polem ochronnym, najmniejszymi rozmiarami i zasadami użycia: [logo/README.md](logo/README.md). To samo w jednym pliku dla klienta: [księga znaku (PDF, 6 stron)](logo/Inzynieria-Sanitarna-ksiega-znaku.pdf).
 
@@ -44,10 +44,10 @@ Jedna strona, czarno-biała, z motywami rysunku technicznego. Działa na telefon
 - **Nagłówek:** hasło „Instalacje sanitarne. Od projektu po wykonanie." i narysowany dla tej strony przekrój domu z instalacjami. Każda branża ma na nim własny typ linii, jak na prawdziwym rysunku.
 - **Zakres prac:** tabela, która pokazuje, co firma projektuje, a co również wykonuje.
 - **Współpraca:** cztery etapy od zapytania do wykonania instalacji.
-- **Realizacje:** liczby zrealizowanych zleceń i miejsce na zdjęcia.
-- **Kontakt:** pole na jedno zdanie, które otwiera gotową wiadomość e-mail, oraz dane firmy.
+- **Realizacje:** liczby zrealizowanych zleceń i miejsce na zdjęcia; na telefonie zdjęcia przesuwa się palcem.
+- **Kontakt:** krótki formularz z wyborem typu zapytania, który otwiera gotową wiadomość e-mail, oraz dane firmy.
 
-W teście Google Lighthouse z 6 października 2026 r. strona główna uzyskała 100 na 100 punktów w każdej z czterech kategorii: szybkość, dostępność, dobre praktyki i SEO.
+W teście jakości Google (Lighthouse) z 6 października 2026 r. strona główna uzyskała 100 na 100 punktów w każdej z czterech kategorii: szybkość, dostępność, dobre praktyki i widoczność w wyszukiwarkach.
 
 <img src="docs/strona.png" alt="Zrzut całej strony: nagłówek z rysunkiem instalacji, zakres prac, współpraca, realizacje i kontakt" width="720" />
 
@@ -65,7 +65,3 @@ Zanim strona trafi pod docelowy adres, potrzebujemy od klienta:
 Po naszej stronie:
 
 - [ ] Wybór sposobu pokazania statystyk. Cztery warianty do porównania są na [stronie roboczej](https://dmindabrowski.github.io/instalacje-sanitarne-karol-kozicki/warianty/), którą potem usuniemy.
-
-## Dla osób technicznych
-
-Strona jest zbudowana w Astro. Podgląd lokalny: `npm install`, potem `npm run dev` (adres http://localhost:4323). Opis plików i zasady wprowadzania zmian są w [AGENTS.md](AGENTS.md). Fonty IBM Plex Sans i IBM Plex Mono są na licencji SIL Open Font License 1.1.

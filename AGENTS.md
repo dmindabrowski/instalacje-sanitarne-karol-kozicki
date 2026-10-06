@@ -14,7 +14,8 @@ Strona firmowa klienta: Inżynieria Sanitarna Karol Kozicki (Ełk), firma projek
 - `src/pages/index.astro`: treść strony, sekcja po sekcji.
 - `src/components/Schemat.astro`: rysunek instalacji w nagłówku strony. Zaakceptowany przez właściciela, nie zmieniaj go bez wyraźnej prośby.
 - `logo/`: logo i znak firmy (SVG i PNG, wersja czarna i odwrócona), podgląd w `logo/podglad.html`, opis logo i zasady użycia w `logo/README.md`, księga znaku dla klienta w `logo/Inzynieria-Sanitarna-ksiega-znaku.pdf` (źródło: `logo/ksiega-znaku.html`). Te pliki nie trafiają na stronę.
-- `README.md` i `docs/`: opis projektu dla właściciela i klienta (bez szczegółów technicznych) oraz obrazki do niego.
+- `README.md` i `docs/`: opis projektu dla właściciela i klienta oraz obrazki do niego. Bez informacji technicznych: te trzymamy w tym pliku.
+- Uruchomienie lokalne: `npm install`, potem `npm run dev` (http://localhost:4323). Fonty IBM Plex Sans i IBM Plex Mono: licencja SIL Open Font License 1.1 (`public/fonts/LICENSE.txt`).
 - `.github/workflows/pages.yml`: po każdym wypchnięciu na `main` buduje stronę i publikuje podgląd na GitHub Pages (https://dmindabrowski.github.io/instalacje-sanitarne-karol-kozicki/). Podgląd leży w podkatalogu, dlatego odnośniki w `Layout.astro` zaczynają się od `base`; nie wpisuj ścieżek od `/` na sztywno.
 - `src/styles/global.css`: wszystkie style, kolory w zmiennych CSS na górze pliku.
 - `public/`: pliki kopiowane bez zmian (favicon, fonty, obrazek do udostępniania).
@@ -27,7 +28,7 @@ Strona firmowa klienta: Inżynieria Sanitarna Karol Kozicki (Ełk), firma projek
 - Każda sekcja ma ten sam układ: w lewej kolumnie duży szary numer (01–04), pod nim tytuł i jedno zdanie opisu, reszta kolumny pusta; treść po prawej.
 - Kontakt: formularz (typ zapytania z listy, pole wiadomości, przycisk „Wyślij"), który otwiera gotowy e-mail z typem w temacie; obok dane firmy w tabelce rysunkowej. Lista typów jest w `src/data/zakres.json` (`typyZapytan`).
 - Sekcja „Współpraca" (kropki z numerami połączone linią) jest wzorowana na solvy-www.
-- Zakres prac zostaje tabelą „Projekt / Wykonanie", realizacje trzema równymi ramkami.
+- Zakres prac zostaje tabelą „Projekt / Wykonanie", realizacje trzema równymi ramkami; na telefonie ramki są rzędem do przesuwania palcem.
 - Dane kontaktowe i zakres prac zmieniaj tylko w `src/data/`. Nie wpisuj ich na sztywno w stronie.
 - Firma projektuje sieci i przyłącza, ale ich nie wykonuje. Żaden tekst nie może sugerować inaczej.
 - Treści pisz po polsku, rzeczowo, w tonie pozostałych tekstów na stronie. Nie dopisuj faktów o firmie (uprawnień, liczby realizacji, obszaru działania), których nie ma w zgłoszeniu ani na stronie.

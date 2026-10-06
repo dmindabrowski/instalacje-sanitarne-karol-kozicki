@@ -170,7 +170,7 @@ const zdjecie = (plik: string) => {
 				</dl>
 				{liczbyPrzykladowe && <p class="sample-note sample-note--facts">Liczby przykładowe, do potwierdzenia.</p>}
 
-				<ul class="works">
+				<ul class="works" aria-label="Realizacje">
 					{
 						realizacje.map((praca) => (
 							<li class="work">
@@ -285,6 +285,17 @@ const zdjecie = (plik: string) => {
 			</div>
 		</div>
 	</section>
+
+	<script is:inline>
+		// On phones the jobs are a row to swipe. While it scrolls sideways it can take keyboard focus, so arrow keys work too.
+		(() => {
+			const row = document.querySelector('.works');
+			const update = () => (row.scrollWidth > row.clientWidth ? row.setAttribute('tabindex', '0') : row.removeAttribute('tabindex'));
+
+			update();
+			addEventListener('resize', update);
+		})();
+	</script>
 
 	<script is:inline>
 		// The figures count up once, when their tiles scroll into view. Without JavaScript, or with reduced motion, they are simply shown.

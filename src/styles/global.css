@@ -1083,7 +1083,6 @@ img {
 		margin-left: auto;
 	}
 
-	.works,
 	.reach {
 		grid-template-columns: minmax(0, 1fr);
 	}
@@ -1096,9 +1095,30 @@ img {
 		padding-inline: 0.9rem;
 	}
 
-	/* One empty frame is enough on a phone. */
-	.work--spare {
+	/* Realizacje become a row to swipe; the edge of the next card shows there is more. */
+	.works {
+		display: flex;
+		gap: 0.75rem;
+		margin-inline: calc(-1 * var(--gutter));
+		padding-inline: var(--gutter);
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		scroll-padding-inline: var(--gutter);
+		scrollbar-width: none;
+	}
+
+	.works::-webkit-scrollbar {
 		display: none;
+	}
+
+	.work {
+		flex: 0 0 82%;
+		scroll-snap-align: start;
+	}
+
+	/* A single job has nothing to swipe to, so it takes the full width. */
+	.work:only-child {
+		flex-basis: 100%;
 	}
 
 	.facts {

@@ -80,21 +80,19 @@
 	--gutter: clamp(1rem, 4vw, 2rem);
 }
 
-@media (prefers-color-scheme: dark) {
-	:root {
-		color-scheme: dark;
+/* The page is light by default, whatever the system is set to. Dark is the visitor's own choice, made with the switch in the header. */
+:root[data-theme='dark'] {
+	color-scheme: dark;
 
-		--bg: #0c0c0d;
-		--bg-alt: #151516;
-		--ink: #f3f3f0;
-		--ink-2: #bcbebd;
-		--ink-3: #909392;
-		--line: #2e2e30;
-		--grid: #161617;
-		--paper: #121213;
-		--paper-2: #19191b;
-
-	}
+	--bg: #0c0c0d;
+	--bg-alt: #151516;
+	--ink: #f3f3f0;
+	--ink-2: #bcbebd;
+	--ink-3: #909392;
+	--line: #2e2e30;
+	--grid: #161617;
+	--paper: #121213;
+	--paper-2: #19191b;
 }
 
 *,
@@ -267,6 +265,41 @@ img {
 	color: var(--ink);
 	text-decoration: underline;
 	text-decoration-thickness: 1px;
+}
+
+/* The light/dark switch: a small square with a half-filled circle. In the header on wide screens, as a text link in the footer on phones. */
+.theme {
+	display: grid;
+	flex: none;
+	place-items: center;
+	width: 2.35rem;
+	height: 2.35rem;
+	padding: 0;
+	border: 1px solid var(--line);
+	background: transparent;
+	color: var(--ink);
+	cursor: pointer;
+	transition: border-color 0.15s ease;
+}
+
+.theme:hover {
+	border-color: var(--ink);
+}
+
+.theme svg {
+	display: block;
+}
+
+.theme--text {
+	display: none;
+	width: auto;
+	height: auto;
+	border: 0;
+	color: inherit;
+	font: inherit;
+	letter-spacing: inherit;
+	text-decoration: underline;
+	text-underline-offset: 0.2em;
 }
 
 /* Buttons: solid ink, square corners; hover swaps ink and paper. */
@@ -970,8 +1003,13 @@ img {
 		white-space: nowrap;
 	}
 
-	.top__nav {
+	.top__nav,
+	.top .theme {
 		display: none;
+	}
+
+	.theme--text:not([hidden]) {
+		display: inline;
 	}
 
 	.top__cta {

@@ -23,13 +23,19 @@ Firma nie miała wcześniej strony ani logo. Jedyna wskazówka co do wyglądu br
 
 ### Logo
 
-Znak to symbol zaworu z rysunku instalacji, biały na czarnym kwadracie. Obok stoi nazwa firmy i nazwisko właściciela.
+Znak to symbol zaworu z rysunku instalacji: dwa trójkąty stykające się wierzchołkami, a nad nimi trzpień z pokrętłem. Taki symbol stoi na każdym projekcie instalacji, więc od razu mówi, czym firma się zajmuje. Jest biały na czarnym kwadracie i pozostaje czytelny nawet jako ikona 16 × 16 pikseli.
+
+Obok znaku stoi nazwa firmy (pismo IBM Plex Sans) i nazwisko właściciela wersalikami (IBM Plex Mono, pismo jak z opisów rysunku technicznego).
 
 | Na jasnym tle | Na ciemnym tle | Sam znak |
 | --- | --- | --- |
 | <img src="logo/logo.png" alt="Logo na jasnym tle" width="300" /> | <img src="docs/logo-na-ciemnym.png" alt="Logo na ciemnym tle" width="300" /> | <img src="logo/znak.png" alt="Znak" width="72" /> |
 
-Komplet plików jest w katalogu [`logo/`](logo/): logo i sam znak, w wersji czarnej i odwróconej, jako SVG i PNG. Napis jest zamieniony na krzywe, więc pliki można wysłać do drukarni bez dołączania fontu.
+- **Kolory:** tylko czerń `#0B0B0C`, biel `#FFFFFF` i szarość `#686C70` dla nazwiska. Nie ma koloru firmowego.
+- **Wersje:** logo podstawowe, logo odwrócone na ciemne tło i sam znak do ikon i profili.
+- **Pliki:** SVG do druku i PNG do dokumentów, w katalogu [`logo/`](logo/). Napis jest zamieniony na krzywe, więc do drukarni nie trzeba dołączać fontu.
+
+Pełny opis logo, z polem ochronnym, najmniejszymi rozmiarami i zasadami użycia: [logo/README.md](logo/README.md).
 
 ### Strona
 

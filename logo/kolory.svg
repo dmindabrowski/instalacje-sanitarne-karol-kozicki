@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 182" width="880" height="182" font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+	<title>Kolory logo</title>
+	<rect width="880" height="182" fill="#f5f5f3"/>
+	<rect x="16" y="16" width="200" height="150" fill="#0b0b0c" stroke="#d8d8d4"/>
+	<text x="30" y="108" fill="#ffffff" font-size="17" font-weight="600">Czerń</text>
+	<text x="30" y="130" fill="#ffffff" font-size="14" font-family="ui-monospace, Menlo, Consolas, monospace">#0B0B0C</text>
+	<text x="30" y="152" fill="#ffffff" font-size="12.5" opacity="0.8">znak, nazwa firmy</text>
+	<rect x="232" y="16" width="200" height="150" fill="#ffffff" stroke="#d8d8d4"/>
+	<text x="246" y="108" fill="#0b0b0c" font-size="17" font-weight="600">Biel</text>
+	<text x="246" y="130" fill="#0b0b0c" font-size="14" font-family="ui-monospace, Menlo, Consolas, monospace">#FFFFFF</text>
+	<text x="246" y="152" fill="#0b0b0c" font-size="12.5" opacity="0.8">tło, symbol w znaku</text>
+	<rect x="448" y="16" width="200" height="150" fill="#686c70" stroke="#d8d8d4"/>
+	<text x="462" y="108" fill="#ffffff" font-size="17" font-weight="600">Szarość</text>
+	<text x="462" y="130" fill="#ffffff" font-size="14" font-family="ui-monospace, Menlo, Consolas, monospace">#686C70</text>
+	<text x="462" y="152" fill="#ffffff" font-size="12.5" opacity="0.8">nazwisko na jasnym tle</text>
+	<rect x="664" y="16" width="200" height="150" fill="#bcbebd" stroke="#d8d8d4"/>
+	<text x="678" y="108" fill="#0b0b0c" font-size="17" font-weight="600">Jasna szarość</text>
+	<text x="678" y="130" fill="#0b0b0c" font-size="14" font-family="ui-monospace, Menlo, Consolas, monospace">#BCBEBD</text>
+	<text x="678" y="152" fill="#0b0b0c" font-size="12.5" opacity="0.8">nazwisko na ciemnym tle</text>
+</svg>

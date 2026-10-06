@@ -1,46 +1,65 @@
-# kozicki-www
+<p>
+	<picture>
+		<source media="(prefers-color-scheme: dark)" srcset="logo/logo-odwrocone.svg" />
+		<img src="logo/logo.svg" alt="Inżynieria Sanitarna Karol Kozicki" width="380" />
+	</picture>
+</p>
 
-Strona firmowa: Inżynieria Sanitarna Karol Kozicki, Ełk. Jedna strona w Astro, czarno-biała.
+# Strona firmowa: Inżynieria Sanitarna Karol Kozicki
 
-## Lokalnie
+Strona internetowa i logo dla firmy projektowo-wykonawczej z Ełku. Projekt i realizacja: [Solvy.pl](https://solvy.pl).
 
-```sh
-npm install
-npm run dev      # podgląd na http://localhost:4323
-npm run build    # zbudowana strona w dist/
-```
+**Podgląd strony:** https://dmindabrowski.github.io/instalacje-sanitarne-karol-kozicki/
 
-## Dodawanie realizacji
+Podgląd odświeża się sam po każdej zmianie wysłanej do tego repozytorium. To wersja robocza: część danych jest przykładowa (lista niżej), a wyszukiwarki jej nie indeksują.
 
-1. Zdjęcie (jpg, png albo webp) zapisz w `src/assets/realizacje/`.
-2. W `src/data/realizacje.json` dopisz wpis:
+## Klient
 
-```json
-[
-	{
-		"nazwa": "Dom jednorodzinny, Ełk",
-		"opis": "Projekt i wykonanie instalacji wod-kan i c.o.",
-		"obraz": "dom-elk.jpg",
-		"alt": "Kotłownia z kotłem gazowym i rozdzielaczem ogrzewania podłogowego."
-	}
-]
-```
+Inżynieria Sanitarna Karol Kozicki działa w Ełku od 2007 roku. Projektuje i wykonuje instalacje wodno-kanalizacyjne, centralnego ogrzewania, wentylacji i gazu w budynkach jednorodzinnych, wielorodzinnych, usługowych i przemysłowych. Projektuje także sieci wodociągowe i kanalizacyjne oraz przyłącza, ale ich nie wykonuje.
 
-Dopóki lista jest pusta, sekcja pokazuje puste ramki „Realizacje w przygotowaniu". Po pierwszym wpisie znikają.
+Firma nie miała wcześniej strony ani logo. Jedyna wskazówka co do wyglądu brzmiała: czarno-biało.
 
-## Przed publikacją
+## Co zrobiliśmy
 
-- [ ] Telefon: pole `telefon` w `src/data/firma.json` jest puste. Po wpisaniu numer pojawi się w nagłówku i w sekcji Kontakt.
-- [ ] E-mail, adres, NIP i REGON potwierdzić z klientem. Pochodzą z wpisu CEIDG, a nie ze strony GoWork (blokuje automatyczne pobieranie).
-- [ ] Domena: `site` w `astro.config.mjs` (teraz `https://example.com`), potem dodać `public/robots.txt` i `public/sitemap.xml`.
-- [ ] Realizacje: zdjęcia i opisy od klienta.
-- [ ] Liczby zleceń: wartości w `src/data/liczby.json` są przykładowe (pole `"przyklad": true`) i strona pokazuje pod nimi dopisek „Liczby przykładowe, do potwierdzenia". Wpisać liczby od klienta i usunąć to pole przy każdej pozycji; dopisek zniknie sam.
-- [ ] Współpraca: etapy w `src/data/wspolpraca.json` to ogólny szkic, a czasy są przykładowe (pole `"przyklad": true`, na stronie dopisek „Czasy przykładowe, do potwierdzenia"). Potwierdzić z klientem kolejność, treść i czasy, potem usunąć to pole.
+### Logo
 
-## Logo
+Znak to symbol zaworu z rysunku instalacji, biały na czarnym kwadracie. Obok stoi nazwa firmy i nazwisko właściciela.
 
-Katalog `logo/`: `logo.svg` i `znak.svg` (czarne), `logo-odwrocone.svg` i `znak-odwrocony.svg` (na ciemne tło), każdy także jako PNG. Napis w logo jest zamieniony na krzywe, więc pliki nie wymagają fontu. Podgląd: `logo/podglad.html`.
+| Na jasnym tle | Na ciemnym tle | Sam znak |
+| --- | --- | --- |
+| <img src="logo/logo.png" alt="Logo na jasnym tle" width="300" /> | <img src="docs/logo-na-ciemnym.png" alt="Logo na ciemnym tle" width="300" /> | <img src="logo/znak.png" alt="Znak" width="72" /> |
 
-## Fonty
+Komplet plików jest w katalogu [`logo/`](logo/): logo i sam znak, w wersji czarnej i odwróconej, jako SVG i PNG. Napis jest zamieniony na krzywe, więc pliki można wysłać do drukarni bez dołączania fontu.
 
-IBM Plex Sans i IBM Plex Mono, licencja SIL Open Font License 1.1 (`public/fonts/LICENSE.txt`).
+### Strona
+
+Jedna strona, czarno-biała, z motywami rysunku technicznego. Działa na telefonie i komputerze, w trybie jasnym i ciemnym.
+
+- **Nagłówek:** hasło „Instalacje sanitarne. Od projektu po wykonanie." i narysowany dla tej strony przekrój domu z instalacjami. Każda branża ma na nim własny typ linii, jak na prawdziwym rysunku.
+- **Zakres prac:** tabela, która pokazuje, co firma projektuje, a co również wykonuje.
+- **Współpraca:** cztery etapy od zapytania do wykonania instalacji.
+- **Realizacje:** liczby zrealizowanych zleceń i miejsce na zdjęcia.
+- **Kontakt:** pole na jedno zdanie, które otwiera gotową wiadomość e-mail, oraz dane firmy.
+
+W teście Google Lighthouse z 6 października 2026 r. strona główna uzyskała 100 na 100 punktów w każdej z czterech kategorii: szybkość, dostępność, dobre praktyki i SEO.
+
+<img src="docs/strona.png" alt="Zrzut całej strony: nagłówek z rysunkiem instalacji, zakres prac, współpraca, realizacje i kontakt" width="720" />
+
+## Co zostało do zrobienia
+
+Zanim strona trafi pod docelowy adres, potrzebujemy od klienta:
+
+- [ ] **Telefonu.** Po dopisaniu pojawi się w nagłówku i w sekcji Kontakt.
+- [ ] **Potwierdzenia danych firmy.** Adres, e-mail, NIP i REGON pochodzą z publicznego rejestru CEIDG.
+- [ ] **Liczby zleceń.** Wartości 100+, 60+ i 40+ są przykładowe i tak są podpisane na stronie.
+- [ ] **Czasów realizacji** w sekcji Współpraca. Obecne też są przykładowe i podpisane.
+- [ ] **Zdjęć i opisów realizacji.** Do tego czasu sekcja pokazuje puste ramki.
+- [ ] **Domeny**, pod którą strona ma działać.
+
+Po naszej stronie:
+
+- [ ] Wybór sposobu pokazania statystyk. Cztery warianty do porównania są na [stronie roboczej](https://dmindabrowski.github.io/instalacje-sanitarne-karol-kozicki/warianty/), którą potem usuniemy.
+
+## Dla osób technicznych
+
+Strona jest zbudowana w Astro. Podgląd lokalny: `npm install`, potem `npm run dev` (adres http://localhost:4323). Opis plików i zasady wprowadzania zmian są w [AGENTS.md](AGENTS.md). Fonty IBM Plex Sans i IBM Plex Mono są na licencji SIL Open Font License 1.1.

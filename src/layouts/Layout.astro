@@ -10,19 +10,23 @@ interface Props {
 
 const { title, description = firma.opis } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+// The preview on GitHub Pages lives in a subfolder, the final site at the root of its domain; `base` covers both.
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+// The preview shows sample data, so search engines are asked to stay away from it.
+const podglad = Astro.site?.hostname.endsWith('github.io');
 
 const menu = [
-	{ href: '/#zakres', nazwa: 'Zakres' },
-	{ href: '/#wspolpraca', nazwa: 'Współpraca' },
-	{ href: '/#realizacje', nazwa: 'Realizacje' },
-	{ href: '/#kontakt', nazwa: 'Kontakt' },
+	{ href: `${base}/#zakres`, nazwa: 'Zakres' },
+	{ href: `${base}/#wspolpraca`, nazwa: 'Współpraca' },
+	{ href: `${base}/#realizacje`, nazwa: 'Realizacje' },
+	{ href: `${base}/#kontakt`, nazwa: 'Kontakt' },
 ];
 
 const schema = {
 	'@context': 'https://schema.org',
 	'@type': 'HomeAndConstructionBusiness',
 	name: firma.nazwaPelna,
-	url: Astro.site,
+	url: new URL(`${base}/`, Astro.site),
 	email: firma.email,
 	...(firma.telefon && { telephone: firma.telefon }),
 	description: firma.opis,
@@ -46,13 +50,14 @@ const schema = {
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonical} />
+		{podglad && <meta name="robots" content="noindex, nofollow" />}
 		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
 		<meta name="theme-color" content="#0c0c0d" media="(prefers-color-scheme: dark)" />
 
-		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-		<link rel="preload" href="/fonts/ibm-plex-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-		<link rel="preload" href="/fonts/ibm-plex-sans-latin-ext-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
+		<link rel="apple-touch-icon" href={`${base}/apple-touch-icon.png`} />
+		<link rel="preload" href={`${base}/fonts/ibm-plex-sans-latin-wght-normal.woff2`} as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href={`${base}/fonts/ibm-plex-sans-latin-ext-wght-normal.woff2`} as="font" type="font/woff2" crossorigin />
 
 		<meta property="og:type" content="website" />
 		<meta property="og:locale" content="pl_PL" />
@@ -60,7 +65,7 @@ const schema = {
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonical} />
-		<meta property="og:image" content={new URL('/og.png', Astro.site)} />
+		<meta property="og:image" content={new URL(`${base}/og.png`, Astro.site)} />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
 		<meta name="twitter:card" content="summary_large_image" />
@@ -72,7 +77,7 @@ const schema = {
 
 		<header class="top">
 			<div class="wrap top__row">
-				<a class="brand" href="/" aria-label={`${firma.nazwaPelna}, strona główna`}>
+				<a class="brand" href={`${base}/`} aria-label={`${firma.nazwaPelna}, strona główna`}>
 					<svg class="brand__mark" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
 						<rect width="32" height="32"></rect>
 						<path d="M6 12v12l10-6zM26 12v12l-10-6z"></path>
@@ -95,7 +100,7 @@ const schema = {
 							<span class="short">Zadzwoń</span>
 						</a>
 					) : (
-						<a class="button button--small top__cta" href="/#kontakt">
+						<a class="button button--small top__cta" href={`${base}/#kontakt`}>
 							<span class="long">Zapytaj o&nbsp;wycenę</span>
 							<span class="short">Wycena</span>
 						</a>
@@ -116,8 +121,12 @@ const schema = {
 
 		<footer class="foot">
 			<div class="wrap foot__row">
-				<p>© {new Date().getFullYear()} {firma.nazwaPelna}</p>
-				<p>{firma.adres.kod} {firma.adres.miasto} · NIP {firma.nip}</p>
+				<p>
+					© {new Date().getFullYear()} {firma.nazwaPelna} · NIP {firma.nip}
+				</p>
+				<p>
+					Projekt i&nbsp;realizacja: <a href="https://solvy.pl" rel="noopener">Solvy.pl</a>
+				</p>
 			</div>
 		</footer>
 	</body>

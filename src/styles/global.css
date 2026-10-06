@@ -907,6 +907,11 @@ img {
 	padding-block: 0.9rem;
 }
 
+.foot a {
+	color: var(--ink);
+	font-weight: 500;
+}
+
 /* The header button has a short label for narrow phones. */
 .top__cta .short {
 	display: none;

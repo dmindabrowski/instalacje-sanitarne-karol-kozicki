@@ -10,10 +10,12 @@ Strona firmowa klienta: Inżynieria Sanitarna Karol Kozicki (Ełk), firma projek
 - `src/data/liczby.json`: trzy małe kafelki z liczbami zrealizowanych zleceń nad zdjęciami w sekcji „Realizacje". Pozycja z `"przyklad": true` to liczba przykładowa: dopóki jest choć jedna, pod kafelkami widać dopisek „Liczby przykładowe, do potwierdzenia". Po wpisaniu liczby od klienta usuń to pole. Nie usuwaj dopisku w inny sposób.
 - `src/data/realizacje.json`: lista realizacji. Pusta lista pokazuje puste ramki „Realizacje w przygotowaniu".
 - `src/assets/realizacje/`: zdjęcia realizacji.
-- `src/layouts/Layout.astro`: nagłówek, menu i stopka.
+- `src/layouts/Layout.astro`: nagłówek, menu i stopka. W stopce zostaje dopisek „Projekt i realizacja: Solvy.pl".
 - `src/pages/index.astro`: treść strony, sekcja po sekcji.
 - `src/components/Schemat.astro`: rysunek instalacji w nagłówku strony. Zaakceptowany przez właściciela, nie zmieniaj go bez wyraźnej prośby.
 - `logo/`: logo i znak firmy (SVG i PNG, wersja czarna i odwrócona), podgląd w `logo/podglad.html`. Te pliki nie trafiają na stronę.
+- `README.md` i `docs/`: opis projektu dla właściciela i klienta (bez szczegółów technicznych) oraz obrazki do niego.
+- `.github/workflows/pages.yml`: po każdym wypchnięciu na `main` buduje stronę i publikuje podgląd na GitHub Pages (https://dmindabrowski.github.io/instalacje-sanitarne-karol-kozicki/). Podgląd leży w podkatalogu, dlatego odnośniki w `Layout.astro` zaczynają się od `base`; nie wpisuj ścieżek od `/` na sztywno.
 - `src/styles/global.css`: wszystkie style, kolory w zmiennych CSS na górze pliku.
 - `public/`: pliki kopiowane bez zmian (favicon, fonty, obrazek do udostępniania).
 

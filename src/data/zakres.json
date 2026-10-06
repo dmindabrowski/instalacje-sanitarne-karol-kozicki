@@ -6,5 +6,12 @@
 		{ "nazwa": "Instalacje gazowe", "skrot": "", "projekt": true, "wykonanie": true },
 		{ "nazwa": "Sieci wodociągowe i kanalizacyjne", "skrot": "", "projekt": true, "wykonanie": false },
 		{ "nazwa": "Przyłącza", "skrot": "", "projekt": true, "wykonanie": false }
+	],
+	"typyZapytan": [
+		"Projekt instalacji",
+		"Wykonanie instalacji",
+		"Projekt i wykonanie instalacji",
+		"Projekt sieci lub przyłącza",
+		"Inne"
 	]
 }

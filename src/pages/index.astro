@@ -17,7 +17,7 @@ interface Realizacja {
 	alt: string;
 }
 
-const { instalacje } = zakres;
+const { instalacje, typyZapytan } = zakres;
 
 // Pictograms for the figure tiles, drawn white on a black square like the logo mark: a tick, a set square, a pipe elbow.
 const ikony = {
@@ -65,6 +65,7 @@ const zdjecie = (plik: string) => {
 	<section class="section section--alt" id="zakres" aria-labelledby="zakres-h">
 		<div class="wrap section__grid">
 			<header class="section__head">
+				<span class="section__nr" aria-hidden="true">01</span>
 				<h2 id="zakres-h">Zakres prac</h2>
 				<p>Co projektujemy, a&nbsp;co również wykonujemy.</p>
 			</header>
@@ -119,6 +120,7 @@ const zdjecie = (plik: string) => {
 	<section class="section" id="wspolpraca" aria-labelledby="wspolpraca-h">
 		<div class="wrap section__grid">
 			<header class="section__head">
+				<span class="section__nr" aria-hidden="true">02</span>
 				<h2 id="wspolpraca-h">Współpraca</h2>
 				<p>Od zapytania do gotowej instalacji.</p>
 			</header>
@@ -146,6 +148,7 @@ const zdjecie = (plik: string) => {
 	<section class="section section--alt" id="realizacje" aria-labelledby="realizacje-h">
 		<div class="wrap section__grid">
 			<header class="section__head">
+				<span class="section__nr" aria-hidden="true">03</span>
 				<h2 id="realizacje-h">Realizacje</h2>
 				<p>Wybrane projekty i&nbsp;wykonane instalacje.</p>
 			</header>
@@ -212,65 +215,74 @@ const zdjecie = (plik: string) => {
 	</section>
 
 	<section class="section" id="kontakt" aria-labelledby="kontakt-h">
-		<div class="wrap reach">
-			<div>
-				<header class="reach__head">
-					<h2 id="kontakt-h">Kontakt</h2>
-					<p>Napisz jednym zdaniem, czego potrzebujesz: jaki budynek i&nbsp;jakie instalacje.</p>
-				</header>
+		<div class="wrap section__grid">
+			<header class="section__head">
+				<span class="section__nr" aria-hidden="true">04</span>
+				<h2 id="kontakt-h">Kontakt</h2>
+				<p>Wybierz typ zapytania i&nbsp;opisz krótko, czego potrzebujesz.</p>
+			</header>
 
+			<div class="reach">
 				<form class="composer" action={`mailto:${firma.email}`} method="get" data-email={firma.email}>
 					<input type="hidden" name="subject" value="Zapytanie ze strony" />
-					<label class="sr-only" for="wiadomosc">Twoja wiadomość</label>
-					<input
-						id="wiadomosc"
-						name="body"
-						type="text"
-						placeholder="Np. projekt instalacji wod-kan w domu"
-						autocomplete="off"
-						required
-					/>
-					<button class="button" type="submit">Wyślij</button>
-				</form>
-				<p class="composer__note">Wiadomość otworzy się w&nbsp;Twoim programie pocztowym.</p>
-			</div>
 
-			<address class="block">
-				<dl>
-					<div class="block__wide">
-						<dt>Firma</dt>
-						<dd><strong>{firma.nazwaPelna}</strong></dd>
+					<div class="composer__field">
+						<label for="typ">Typ zapytania</label>
+						<select id="typ" name="typ">
+							{typyZapytan.map((typ) => <option>{typ}</option>)}
+						</select>
 					</div>
-					<div class="block__wide">
-						<dt>Adres</dt>
-						<dd>{firma.adres.ulica}, {firma.adres.kod}&nbsp;{firma.adres.miasto}</dd>
+
+					<div class="composer__field composer__field--grow">
+						<label for="wiadomosc">Wiadomość</label>
+						<textarea id="wiadomosc" name="body" rows="3" placeholder="Np. dom jednorodzinny, instalacje wod-kan i c.o." required></textarea>
 					</div>
-					{
-						firma.telefon && (
-							<div class="block__wide">
-								<dt>Telefon</dt>
-								<dd>
-									<a href={telHref(firma.telefon)}>{firma.telefon}</a>
-								</dd>
-							</div>
-						)
-					}
-					<div class="block__wide">
-						<dt>E-mail</dt>
-						<dd>
-							<a href={`mailto:${firma.email}`}>{firma.email}</a>
-						</dd>
+
+					<div class="composer__foot">
+						<p>Wiadomość otworzy się w&nbsp;Twoim programie pocztowym.</p>
+						<button class="button" type="submit">Wyślij</button>
 					</div>
-					<div>
-						<dt>NIP</dt>
-						<dd>{firma.nip}</dd>
-					</div>
-					<div>
-						<dt>REGON</dt>
-						<dd>{firma.regon}</dd>
-					</div>
-				</dl>
-			</address>
+				</form>
+
+				<address class="block">
+					<dl>
+						<div class="block__wide">
+							<dt>Firma</dt>
+							<dd><strong>{firma.nazwaPelna}</strong></dd>
+						</div>
+						<div class="block__wide">
+							<dt>Adres</dt>
+							<dd>
+								{firma.adres.ulica}, <span class="nowrap">{firma.adres.kod} {firma.adres.miasto}</span>
+							</dd>
+						</div>
+						{
+							firma.telefon && (
+								<div class="block__wide">
+									<dt>Telefon</dt>
+									<dd>
+										<a href={telHref(firma.telefon)}>{firma.telefon}</a>
+									</dd>
+								</div>
+							)
+						}
+						<div class="block__wide">
+							<dt>E-mail</dt>
+							<dd>
+								<a href={`mailto:${firma.email}`}>{firma.email}</a>
+							</dd>
+						</div>
+						<div>
+							<dt>NIP</dt>
+							<dd>{firma.nip}</dd>
+						</div>
+						<div>
+							<dt>REGON</dt>
+							<dd>{firma.regon}</dd>
+						</div>
+					</dl>
+				</address>
+			</div>
 		</div>
 	</section>
 
@@ -325,12 +337,14 @@ const zdjecie = (plik: string) => {
 	</script>
 
 	<script is:inline>
-		// Opens the visitor's mail app with their sentence as the message. Without JavaScript the form still submits to the same address.
+		// Opens the visitor's mail app with a ready message: the kind of inquiry goes into the subject, the text into the body.
+		// Without JavaScript the form still submits to the same address.
 		document.querySelector('.composer').addEventListener('submit', (event) => {
 			const form = event.currentTarget;
+			const subject = `${form.elements.subject.value}: ${form.elements.typ.value}`;
 
 			event.preventDefault();
-			location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(form.elements.subject.value)}&body=${encodeURIComponent(form.elements.body.value)}`;
+			location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(form.elements.body.value)}`;
 		});
 	</script>
 </Layout>

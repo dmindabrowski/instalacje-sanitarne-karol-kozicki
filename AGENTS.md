@@ -24,7 +24,8 @@ Strona firmowa klienta: Inżynieria Sanitarna Karol Kozicki (Ełk), firma projek
 - Strona jest czarno-biała: czerń, biel i szarości, bez koloru akcentu. Narożniki są proste, bez zaokrągleń.
 - Domyślny jest tryb jasny, niezależnie od ustawień systemu. Tryb ciemny włącza odwiedzający przełącznikiem (w nagłówku, na telefonie w stopce); wybór jest pamiętany w przeglądarce. Kolory trybu ciemnego są w `:root[data-theme='dark']`.
 - Strona ma być krótka: małe odstępy między sekcjami, bez dużych czarnych płaszczyzn (czarne są tylko przyciski, linie i tekst). Sekcje pod nagłówkiem leżą na dwóch odcieniach szarego papieru (`--paper`, `--paper-2`), białe są karty. Właściciel odrzucił zarówno wersję z czarnymi panelami, jak i całkiem białą.
-- Kontakt: po lewej pole na jedno zdanie z przyciskiem „Wyślij" (otwiera gotowy e-mail), wzorowane na solvy-www; po prawej dane firmy w tabelce rysunkowej.
+- Każda sekcja ma ten sam układ: w lewej kolumnie duży szary numer (01–04), pod nim tytuł i jedno zdanie opisu, reszta kolumny pusta; treść po prawej.
+- Kontakt: formularz (typ zapytania z listy, pole wiadomości, przycisk „Wyślij"), który otwiera gotowy e-mail z typem w temacie; obok dane firmy w tabelce rysunkowej. Lista typów jest w `src/data/zakres.json` (`typyZapytan`).
 - Sekcja „Współpraca" (kropki z numerami połączone linią) jest wzorowana na solvy-www.
 - Zakres prac zostaje tabelą „Projekt / Wykonanie", realizacje trzema równymi ramkami.
 - Dane kontaktowe i zakres prac zmieniaj tylko w `src/data/`. Nie wpisuj ich na sztywno w stronie.

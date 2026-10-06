@@ -1,0 +1,336 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import Schemat from '../components/Schemat.astro';
+import firma from '../data/firma.json';
+import zakres from '../data/zakres.json';
+import realizacjeJson from '../data/realizacje.json';
+import liczby from '../data/liczby.json';
+import etapy from '../data/wspolpraca.json';
+import { t, telHref } from '../lib/tekst';
+
+interface Realizacja {
+	nazwa: string;
+	opis: string;
+	obraz: string;
+	alt: string;
+}
+
+const { instalacje } = zakres;
+
+// Pictograms for the figure tiles, drawn white on a black square like the logo mark: a tick, a set square, a pipe elbow.
+const ikony = {
+	razem: '<path d="M5 12.500 10 17.500 19 7"/>',
+	projekt: '<path d="M5 19.500V4.500l15 15z"/><path d="M8.500 16v-4l4 4z"/>',
+	wykonanie: '<path d="M6 4v6a8 8 0 0 0 8 8h6"/><path d="M3 4h6M20 15v6"/>',
+};
+// Sample figures stay labelled as such on the page until the client's real ones replace them.
+const liczbyPrzykladowe = liczby.some((liczba) => liczba.przyklad);
+const czasyPrzykladowe = etapy.some((etap) => etap.czas && etap.przyklad);
+// "100+" -> the number that counts up and whatever follows it.
+const czesci = (wartosc: string) => wartosc.match(/^(\d+)(.*)$/) ?? [wartosc, '', wartosc];
+const realizacje: Realizacja[] = realizacjeJson;
+
+// Photos of finished jobs are picked up by file name, so a new entry needs only the file and a line in realizacje.json.
+const zdjecia = import.meta.glob<{ default: ImageMetadata }>('../assets/realizacje/*.{jpg,jpeg,png,webp}', { eager: true });
+const zdjecie = (plik: string) => {
+	const modul = zdjecia[`../assets/realizacje/${plik}`];
+	if (!modul) throw new Error(`Brak pliku src/assets/realizacje/${plik} (wpis w realizacje.json).`);
+	return modul.default;
+};
+
+---
+
+<Layout title={`${firma.nazwaPelna}: projektowanie i wykonawstwo instalacji sanitarnych, ${firma.adres.miasto}`}>
+	<section class="hero">
+		<div class="wrap hero__grid">
+			<div class="hero__text">
+				<p class="eyebrow">Firma projektowo-wykonawcza · {firma.adres.miasto} · od {firma.odRoku}&nbsp;r.</p>
+				<h1>Instalacje sanitarne. <span>Od projektu po wykonanie.</span></h1>
+				<p class="lead">
+					Projektujemy i&nbsp;wykonujemy instalacje wod-kan, centralnego ogrzewania, wentylacji i&nbsp;gazu w&nbsp;budynkach mieszkalnych, usługowych
+					i&nbsp;przemysłowych.
+				</p>
+				<div class="hero__actions">
+					<a class="button" href="#kontakt">Zapytaj o&nbsp;wycenę</a>
+					<a class="button button--secondary" href="#zakres">Zobacz zakres</a>
+				</div>
+			</div>
+
+			<Schemat />
+		</div>
+	</section>
+
+	<section class="section section--alt" id="zakres" aria-labelledby="zakres-h">
+		<div class="wrap section__grid">
+			<header class="section__head">
+				<h2 id="zakres-h">Zakres prac</h2>
+				<p>Co projektujemy, a&nbsp;co również wykonujemy.</p>
+			</header>
+
+			<div class="card">
+				<table class="scope">
+					<caption class="sr-only">Zakres prac: projektowanie i&nbsp;wykonawstwo</caption>
+					<thead>
+						<tr>
+							<th scope="col">Rodzaj prac</th>
+							<th scope="col">Projekt</th>
+							<th scope="col">Wykonanie</th>
+						</tr>
+					</thead>
+					<tbody>
+						{
+							instalacje.map((pozycja) => (
+								<tr>
+									<th scope="row">
+										{t(pozycja.nazwa)}
+										{pozycja.skrot && <small>{pozycja.skrot}</small>}
+									</th>
+									{[pozycja.projekt, pozycja.wykonanie].map((jest) => (
+										<td>
+											{jest ? (
+												<span class="scope__yes">
+													<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+														<path d="M5 12.5 10 17.5 19 7" />
+													</svg>
+													<span class="sr-only">tak</span>
+												</span>
+											) : (
+												<span class="scope__no">
+													<span aria-hidden="true">—</span>
+													<span class="sr-only">nie</span>
+												</span>
+											)}
+										</td>
+									))}
+								</tr>
+							))
+						}
+					</tbody>
+				</table>
+				<p class="scope__note">
+					Instalacje projektujemy i&nbsp;wykonujemy jako wewnętrzne i&nbsp;zewnętrzne. Sieci i&nbsp;przyłącza projektujemy, ale ich nie wykonujemy.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section" id="wspolpraca" aria-labelledby="wspolpraca-h">
+		<div class="wrap section__grid">
+			<header class="section__head">
+				<h2 id="wspolpraca-h">Współpraca</h2>
+				<p>Od zapytania do gotowej instalacji.</p>
+			</header>
+
+			<div>
+				<ol class="steps">
+					{
+						etapy.map((etap, nr) => (
+							<li>
+								<span class="steps__dot" aria-hidden="true">
+									{nr + 1}
+								</span>
+								{etap.czas && <span class="steps__time">{etap.czas}</span>}
+								<h3>{t(etap.tytul)}</h3>
+								<p>{t(etap.tekst)}</p>
+							</li>
+						))
+					}
+				</ol>
+				{czasyPrzykladowe && <p class="sample-note">Czasy przykładowe, do potwierdzenia.</p>}
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--alt" id="realizacje" aria-labelledby="realizacje-h">
+		<div class="wrap section__grid">
+			<header class="section__head">
+				<h2 id="realizacje-h">Realizacje</h2>
+				<p>Wybrane projekty i&nbsp;wykonane instalacje.</p>
+			</header>
+
+			<div>
+				<dl class="facts">
+					{
+						liczby.map((liczba) => (
+							<div class="fact">
+								<dt>{t(liczba.opis)}</dt>
+								<dd>
+									{czesci(liczba.wartosc)[1] && <span data-count={czesci(liczba.wartosc)[1]}>{czesci(liczba.wartosc)[1]}</span>}
+									<i>{czesci(liczba.wartosc)[2]}</i>
+									<svg class="fact__icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" set:html={ikony[liczba.ikona as keyof typeof ikony]} />
+								</dd>
+							</div>
+						))
+					}
+				</dl>
+				{liczbyPrzykladowe && <p class="sample-note sample-note--facts">Liczby przykładowe, do potwierdzenia.</p>}
+
+				<ul class="works">
+					{
+						realizacje.map((praca) => (
+							<li class="work">
+								<Image src={zdjecie(praca.obraz)} alt={praca.alt} widths={[400, 640, 960]} sizes="(min-width: 48rem) 18rem, 100vw" loading="lazy" />
+								<div class="work__body">
+									<h3>{t(praca.nazwa)}</h3>
+									<p>{t(praca.opis)}</p>
+								</div>
+							</li>
+						))
+					}
+					{
+						/* Until the first photos arrive the section shows empty frames. */
+						realizacje.length === 0 && (
+							<>
+								<li class="work work--blank">
+									<span class="blank" aria-hidden="true">
+										<b>Fot. 1</b>
+									</span>
+									<div class="work__body">
+										<h3>Realizacje w&nbsp;przygotowaniu</h3>
+										<p>Zdjęcia i&nbsp;opisy wykonanych instalacji dodamy wkrótce.</p>
+									</div>
+								</li>
+								{[2, 3].map((nr) => (
+									<li class="work work--blank work--spare" aria-hidden="true">
+										<span class="blank">
+											<b>Fot. {nr}</b>
+										</span>
+										<div class="work__body">
+											<i class="bar" />
+											<i class="bar bar--short" />
+										</div>
+									</li>
+								))}
+							</>
+						)
+					}
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="section" id="kontakt" aria-labelledby="kontakt-h">
+		<div class="wrap reach">
+			<div>
+				<header class="reach__head">
+					<h2 id="kontakt-h">Kontakt</h2>
+					<p>Napisz jednym zdaniem, czego potrzebujesz: jaki budynek i&nbsp;jakie instalacje.</p>
+				</header>
+
+				<form class="composer" action={`mailto:${firma.email}`} method="get" data-email={firma.email}>
+					<input type="hidden" name="subject" value="Zapytanie ze strony" />
+					<label class="sr-only" for="wiadomosc">Twoja wiadomość</label>
+					<input
+						id="wiadomosc"
+						name="body"
+						type="text"
+						placeholder="Np. projekt instalacji wod-kan w domu"
+						autocomplete="off"
+						required
+					/>
+					<button class="button" type="submit">Wyślij</button>
+				</form>
+				<p class="composer__note">Wiadomość otworzy się w&nbsp;Twoim programie pocztowym.</p>
+			</div>
+
+			<address class="block">
+				<dl>
+					<div class="block__wide">
+						<dt>Firma</dt>
+						<dd><strong>{firma.nazwaPelna}</strong></dd>
+					</div>
+					<div class="block__wide">
+						<dt>Adres</dt>
+						<dd>{firma.adres.ulica}, {firma.adres.kod}&nbsp;{firma.adres.miasto}</dd>
+					</div>
+					{
+						firma.telefon && (
+							<div class="block__wide">
+								<dt>Telefon</dt>
+								<dd>
+									<a href={telHref(firma.telefon)}>{firma.telefon}</a>
+								</dd>
+							</div>
+						)
+					}
+					<div class="block__wide">
+						<dt>E-mail</dt>
+						<dd>
+							<a href={`mailto:${firma.email}`}>{firma.email}</a>
+						</dd>
+					</div>
+					<div>
+						<dt>NIP</dt>
+						<dd>{firma.nip}</dd>
+					</div>
+					<div>
+						<dt>REGON</dt>
+						<dd>{firma.regon}</dd>
+					</div>
+				</dl>
+			</address>
+		</div>
+	</section>
+
+	<script is:inline>
+		// The figures count up once, when their tiles scroll into view. Without JavaScript, or with reduced motion, they are simply shown.
+		(() => {
+			const figures = document.querySelectorAll('[data-count]');
+
+			if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+			const observer = new IntersectionObserver(
+				(entries) => {
+					for (const entry of entries) {
+						if (!entry.isIntersecting) continue;
+
+						const figure = entry.target;
+						const end = Number(figure.dataset.count);
+						const duration = 900;
+						let start;
+						let done = false;
+
+						const finish = () => {
+							done = true;
+							figure.textContent = end;
+							figure.classList.remove('is-counting');
+						};
+
+						const tick = (now) => {
+							if (done) return;
+
+							start ??= now;
+
+							const progress = Math.min((now - start) / duration, 1);
+
+							figure.textContent = Math.round(end * (1 - (1 - progress) ** 3));
+							if (progress < 1) requestAnimationFrame(tick);
+							else finish();
+						};
+
+						observer.unobserve(figure);
+						figure.classList.add('is-counting');
+						requestAnimationFrame(tick);
+						// If frames stop coming (a tab in the background), the real value is still set.
+						setTimeout(finish, duration + 300);
+					}
+				},
+				{ threshold: 0.6 },
+			);
+
+			figures.forEach((figure) => observer.observe(figure));
+		})();
+	</script>
+
+	<script is:inline>
+		// Opens the visitor's mail app with their sentence as the message. Without JavaScript the form still submits to the same address.
+		document.querySelector('.composer').addEventListener('submit', (event) => {
+			const form = event.currentTarget;
+
+			event.preventDefault();
+			location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(form.elements.subject.value)}&body=${encodeURIComponent(form.elements.body.value)}`;
+		});
+	</script>
+</Layout>

@@ -1,0 +1,16 @@
+{
+	"nazwa": "Inżynieria Sanitarna",
+	"nazwaPelna": "Inżynieria Sanitarna Karol Kozicki",
+	"wlasciciel": "Karol Kozicki",
+	"opis": "Hydraulika i instalacje sanitarne w Ełku. Projektujemy i wykonujemy instalacje wod-kan, centralnego ogrzewania, wentylacji i gazu.",
+	"telefon": "",
+	"email": "iskozicki@gmail.com",
+	"adres": {
+		"ulica": "ul. Juliana Tuwima 18/74",
+		"kod": "19-300",
+		"miasto": "Ełk"
+	},
+	"nip": "848-16-68-654",
+	"regon": "280232437",
+	"odRoku": 2007
+}

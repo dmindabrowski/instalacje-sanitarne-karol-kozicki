@@ -1,0 +1,99 @@
+---
+// Schematic section of a house with every installation the company handles.
+// Each trade has its own line type, the way a sanitary drawing tells them apart without colour.
+const kreskiLewe = Array.from({ length: 11 }, (_, nr) => 12 + nr * 12);
+const kreskiPrawe = Array.from({ length: 9 }, (_, nr) => 456 + nr * 12);
+const zebra = [272, 282, 292, 302, 312];
+
+const legenda = [
+	{ klasa: 'd-woda', nazwa: 'Woda' },
+	{ klasa: 'd-kan', nazwa: 'Kanalizacja' },
+	{ klasa: 'd-co', nazwa: 'C.O.' },
+	{ klasa: 'd-gaz', nazwa: 'Gaz' },
+	{ klasa: 'd-went', nazwa: 'Wentylacja' },
+];
+---
+
+<figure class="sheet">
+	<svg
+		class="sheet__drawing"
+		viewBox="0 0 560 436"
+		role="img"
+		aria-label="Schematyczny przekrój domu z instalacją wody, kanalizacji, ogrzewania, gazu i wentylacji."
+	>
+		<g class="d-arch">
+			<path d="M0 330h140M440 330h120"></path>
+			{kreskiLewe.map((x) => <path d={`M${x} 330l-7 8`} />)}
+			{kreskiPrawe.map((x) => <path d={`M${x} 330l-7 8`} />)}
+			<path d="M118 112 290 34l172 78"></path>
+			<rect x="140" y="112" width="8" height="260"></rect>
+			<rect x="432" y="112" width="8" height="260"></rect>
+			<rect x="148" y="112" width="284" height="8"></rect>
+			<rect x="148" y="220" width="284" height="8"></rect>
+			<rect x="148" y="330" width="284" height="8"></rect>
+			<rect x="134" y="372" width="20" height="7"></rect>
+			<rect x="426" y="372" width="20" height="7"></rect>
+			<path d="M100 220h40"></path>
+		</g>
+
+		<g class="d-mark">
+			<path d="M118 330l-5-8h10zM118 220l-5-8h10z"></path>
+			<text x="108" y="322" text-anchor="end">±0,00</text>
+			<text x="108" y="212" text-anchor="end">+3,00</text>
+		</g>
+
+		<g class="d-pipe">
+			<path class="d-kan" d="M196 66v342L0 414M227 311v9h-31M227 201v11h-31"></path>
+			<path class="d-woda" d="M0 392h176V150M176 290h51v6M176 180h51v6"></path>
+			<path class="d-co" d="M400 314v8H292v-4M346 322V212h-54v-4"></path>
+			<path class="d-gaz" d="M560 384h-96v-74M452 297h-28"></path>
+			<path class="d-went" d="M236 130h154V60M236 142h166V60M236 130v12M270 142v11m-4-5 4 5 4-5M340 142v11m-4-5 4 5 4-5"></path>
+		</g>
+
+		<g class="d-part">
+			<path d="M190 66h12M384 60h24M387 53h18M396 60v-7"></path>
+			<circle cx="64" cy="392" r="8"></circle>
+			<path d="M64 392l4-5"></path>
+			<path d="M94 386v12l12-12v12z"></path>
+			<rect x="214" y="300" width="26" height="4"></rect>
+			<path d="M216 304q11 13 22 0"></path>
+			<rect x="214" y="190" width="26" height="4"></rect>
+			<path d="M216 194q11 13 22 0"></path>
+			<rect x="262" y="286" width="60" height="32"></rect>
+			<rect x="262" y="176" width="60" height="32"></rect>
+			{zebra.map((x) => <path d={`M${x} 286v32M${x} 176v32`} />)}
+			<rect x="390" y="262" width="34" height="52"></rect>
+			<circle cx="407" cy="279" r="5"></circle>
+			<rect x="452" y="284" width="24" height="26"></rect>
+		</g>
+
+		<g class="d-text">
+			<text x="10" y="383">WODA</text>
+			<text x="10" y="430">KANALIZACJA</text>
+			<text x="354" y="256">C.O.</text>
+			<text x="500" y="375">GAZ</text>
+			<text x="416" y="62">WENTYLACJA</text>
+			<text x="464" y="301" text-anchor="middle">G</text>
+		</g>
+	</svg>
+
+	<figcaption class="sheet__caption">
+		<ul class="legend">
+			{
+				legenda.map((pozycja) => (
+					<li>
+						<svg class="d-pipe" viewBox="0 0 28 10" width="28" height="10" aria-hidden="true">
+							{pozycja.klasa === 'd-went' ? (
+								<path class="d-went" d="M1 2h26M1 8h26" />
+							) : (
+								<path class={pozycja.klasa} d="M1 5h26" />
+							)}
+						</svg>
+						{pozycja.nazwa}
+					</li>
+				))
+			}
+		</ul>
+		<p>Rys. 1. Schemat instalacji w&nbsp;budynku jednorodzinnym</p>
+	</figcaption>
+</figure>

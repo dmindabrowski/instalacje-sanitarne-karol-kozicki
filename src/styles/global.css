@@ -1,0 +1,1142 @@
+/* Inżynieria Sanitarna Karol Kozicki */
+
+@font-face {
+	font-family: 'IBM Plex Sans';
+	src: url('/fonts/ibm-plex-sans-latin-wght-normal.woff2') format('woff2');
+	font-weight: 100 700;
+	font-style: normal;
+	font-display: swap;
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+		U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+	font-family: 'IBM Plex Sans';
+	src: url('/fonts/ibm-plex-sans-latin-ext-wght-normal.woff2') format('woff2');
+	font-weight: 100 700;
+	font-style: normal;
+	font-display: swap;
+	unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+		U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+	font-family: 'IBM Plex Mono';
+	src: url('/fonts/ibm-plex-mono-latin-400-normal.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+		U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+	font-family: 'IBM Plex Mono';
+	src: url('/fonts/ibm-plex-mono-latin-ext-400-normal.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+	unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+		U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+	font-family: 'IBM Plex Mono';
+	src: url('/fonts/ibm-plex-mono-latin-500-normal.woff2') format('woff2');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+		U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+	font-family: 'IBM Plex Mono';
+	src: url('/fonts/ibm-plex-mono-latin-ext-500-normal.woff2') format('woff2');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+	unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+		U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* Black ink on white paper, set like a technical drawing: thin rules, square corners, small mono labels. No accent colour. */
+:root {
+	color-scheme: light;
+
+	--bg: #ffffff;
+	--bg-alt: #f5f5f3;
+	--ink: #0b0b0c;
+	--ink-2: #3f4245;
+	--ink-3: #686c70;
+	--line: #d8d8d4;
+	--grid: #f0f0ed;
+	/* Two greys of paper for the sections under the hero; white is left for the cards on them. */
+	--paper: #f2f2ef;
+	--paper-2: #e8e8e4;
+
+	--font: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+	--mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+	--gutter: clamp(1rem, 4vw, 2rem);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		color-scheme: dark;
+
+		--bg: #0c0c0d;
+		--bg-alt: #151516;
+		--ink: #f3f3f0;
+		--ink-2: #bcbebd;
+		--ink-3: #909392;
+		--line: #2e2e30;
+		--grid: #161617;
+		--paper: #121213;
+		--paper-2: #19191b;
+
+	}
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+	scroll-padding-top: 4.5rem;
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	background: var(--bg);
+	color: var(--ink);
+	font-family: var(--font);
+	font-size: 1rem;
+	line-height: 1.55;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+	margin: 0;
+	line-height: 1.1;
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+}
+
+h1 {
+	font-size: clamp(2rem, 4.4vw, 3.1rem);
+	font-weight: 600;
+	letter-spacing: -0.035em;
+}
+
+h2 {
+	font-size: clamp(1.4rem, 2.4vw, 1.7rem);
+	font-weight: 600;
+}
+
+h3 {
+	font-size: 1rem;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+}
+
+p {
+	margin: 0;
+}
+
+a {
+	color: inherit;
+	text-underline-offset: 0.2em;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+:focus-visible {
+	outline: 2px solid var(--ink);
+	outline-offset: 3px;
+}
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+.skip-link {
+	position: absolute;
+	top: 0.5rem;
+	left: 0.5rem;
+	z-index: 20;
+	padding: 0.5rem 0.9rem;
+	background: var(--ink);
+	color: var(--bg);
+	transform: translateY(-200%);
+}
+
+.skip-link:focus {
+	transform: none;
+}
+
+.wrap {
+	width: min(100% - 2 * var(--gutter), 68rem);
+	margin-inline: auto;
+}
+
+/* Header */
+.top {
+	position: sticky;
+	top: 0;
+	z-index: 10;
+	border-bottom: 1px solid var(--ink);
+	background: var(--bg);
+}
+
+.top__row {
+	display: flex;
+	align-items: center;
+	gap: 1.5rem;
+	min-height: 3.75rem;
+}
+
+.brand {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.65rem;
+	text-decoration: none;
+}
+
+/* The mark is a valve symbol from an installation drawing. */
+.brand__mark {
+	flex: none;
+	fill: var(--bg);
+	stroke: var(--bg);
+}
+
+.brand__mark rect {
+	fill: var(--ink);
+	stroke: none;
+}
+
+.brand__mark path:first-of-type {
+	stroke: none;
+}
+
+.brand__name {
+	font-size: 1.02rem;
+	font-weight: 600;
+	line-height: 1.15;
+	letter-spacing: -0.015em;
+}
+
+.brand__name small {
+	display: block;
+	color: var(--ink-3);
+	font-family: var(--mono);
+	font-size: 0.7rem;
+	font-weight: 400;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+.top__nav {
+	display: flex;
+	gap: 1.5rem;
+	margin-left: auto;
+}
+
+.top__nav a {
+	padding-block: 0.3rem;
+	color: var(--ink-2);
+	font-size: 0.95rem;
+	text-decoration: none;
+}
+
+.top__nav a:hover {
+	color: var(--ink);
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+}
+
+/* Buttons: solid ink, square corners; hover swaps ink and paper. */
+.button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 2.9rem;
+	padding: 0.5rem 1.35rem;
+	border: 1px solid var(--ink);
+	background: var(--ink);
+	color: var(--bg);
+	font: inherit;
+	font-weight: 600;
+	text-decoration: none;
+	white-space: nowrap;
+	cursor: pointer;
+	transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.button:hover {
+	background: var(--bg);
+	color: var(--ink);
+}
+
+.button--secondary {
+	background: transparent;
+	color: var(--ink);
+}
+
+.button--secondary:hover {
+	background: var(--ink);
+	color: var(--bg);
+}
+
+.button--small {
+	min-height: 2.35rem;
+	padding: 0.3rem 1rem;
+	font-size: 0.92rem;
+}
+
+/* Hero: the promise on the left, a drawing of what the company does on the right. Faint drawing-paper grid behind. */
+.hero {
+	padding-block: clamp(2.25rem, 5vw, 4rem);
+	background:
+		linear-gradient(var(--grid) 1px, transparent 1px) 0 0 / 1.5rem 1.5rem,
+		linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0 / 1.5rem 1.5rem;
+}
+
+.hero__grid {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+	align-items: center;
+	gap: clamp(2rem, 4.5vw, 3.5rem);
+}
+
+.eyebrow {
+	margin-bottom: 1.1rem;
+	color: var(--ink-2);
+	font-family: var(--mono);
+	font-size: 0.76rem;
+	letter-spacing: 0.07em;
+	text-transform: uppercase;
+}
+
+/* The second sentence of the headline is set in grey: the only tone the page has besides black. */
+.hero h1 span {
+	display: block;
+	color: var(--ink-3);
+}
+
+.lead {
+	max-width: 31rem;
+	margin-top: 1.35rem;
+	color: var(--ink-2);
+	font-size: 1.12rem;
+}
+
+.hero__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.6rem;
+	margin-top: 1.75rem;
+}
+
+/* The drawing sheet: a frame, the drawing, and a strip with the legend and the caption below it. */
+.sheet {
+	margin: 0;
+	border: 1px solid var(--ink);
+	background: var(--bg);
+}
+
+.sheet__drawing {
+	display: block;
+	width: 100%;
+	height: auto;
+	padding: 1.1rem 1.1rem 0.6rem;
+}
+
+/* The building is drawn thin and grey, the installations thick and black, as on a sanitary drawing. */
+.d-arch {
+	fill: none;
+	stroke: var(--ink-3);
+	stroke-width: 1;
+}
+
+.d-arch rect {
+	fill: var(--bg-alt);
+}
+
+.d-mark {
+	fill: var(--ink-3);
+	font-family: var(--mono);
+	font-size: 10px;
+}
+
+.d-pipe path {
+	fill: none;
+	stroke: var(--ink);
+	stroke-width: 2.25;
+}
+
+.d-pipe .d-kan {
+	stroke-dasharray: 7 4;
+}
+
+.d-pipe .d-co {
+	stroke-width: 3;
+	stroke-dasharray: 0.1 6;
+	stroke-linecap: round;
+}
+
+.d-pipe .d-gaz {
+	stroke-dasharray: 11 4 2 4;
+}
+
+.d-pipe .d-went {
+	stroke-width: 1.5;
+}
+
+.d-part {
+	fill: var(--bg);
+	stroke: var(--ink);
+	stroke-width: 1.5;
+}
+
+.d-text {
+	fill: var(--ink-2);
+	font-family: var(--mono);
+	font-size: 10px;
+	letter-spacing: 0.06em;
+}
+
+.sheet__caption {
+	border-top: 1px solid var(--ink);
+	font-family: var(--mono);
+	font-size: 0.72rem;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+.legend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem 1rem;
+	margin: 0;
+	padding: 0.7rem 1.1rem;
+	list-style: none;
+}
+
+.legend li {
+	display: flex;
+	align-items: center;
+	gap: 0.45rem;
+}
+
+.sheet__caption p {
+	padding: 0.55rem 1.1rem;
+	border-top: 1px solid var(--line);
+	color: var(--ink-3);
+}
+
+/* Sections: heading in a narrow left column, content on the right. Grey paper in two alternating tones, white cards on it. Kept tight so the page stays short. */
+.section {
+	padding-block: clamp(1.75rem, 3.5vw, 2.5rem);
+	border-top: 1px solid var(--line);
+	background: var(--paper);
+}
+
+.section--alt {
+	background: var(--paper-2);
+}
+
+.hero + .section {
+	border-top-color: var(--ink);
+}
+
+.card {
+	padding: 0.35rem 1.25rem 1rem;
+	border: 1px solid var(--ink);
+	background: var(--bg);
+}
+
+.section__grid {
+	display: grid;
+	grid-template-columns: 12rem minmax(0, 1fr);
+	gap: 1rem 2rem;
+}
+
+.section__head p {
+	max-width: 13rem;
+	margin-top: 0.45rem;
+	color: var(--ink-2);
+	font-size: 0.92rem;
+}
+
+/* Zakres prac: one row per kind of work, a column for design and a column for execution */
+.scope {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.scope th,
+.scope td {
+	padding: 0.6rem 0.75rem;
+	border-bottom: 1px solid var(--line);
+	text-align: center;
+}
+
+.scope thead th {
+	padding-block: 0.5rem;
+	border-bottom-color: var(--ink);
+	color: var(--ink-3);
+	font-family: var(--mono);
+	font-size: 0.72rem;
+	font-weight: 500;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.scope th:first-child {
+	padding-left: 0;
+	text-align: left;
+}
+
+.scope td {
+	width: 8.5rem;
+}
+
+.scope tbody th {
+	font-size: 1.05rem;
+	font-weight: 500;
+	letter-spacing: -0.01em;
+}
+
+.scope tbody th small {
+	margin-left: 0.6rem;
+	color: var(--ink-3);
+	font-family: var(--mono);
+	font-size: 0.75rem;
+	font-weight: 400;
+	letter-spacing: 0.02em;
+}
+
+.scope__yes svg {
+	display: block;
+	margin-inline: auto;
+	fill: none;
+	stroke: var(--ink);
+	stroke-width: 2.5;
+	stroke-linecap: square;
+}
+
+.scope__no {
+	color: var(--ink-3);
+}
+
+.scope__note {
+	max-width: 40rem;
+	margin-top: 0.75rem;
+	color: var(--ink-2);
+	font-size: 0.92rem;
+}
+
+/* Współpraca: four stages on one line, joined like fittings on a pipe */
+.steps {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 1.5rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.steps li {
+	position: relative;
+}
+
+.steps__dot {
+	position: relative;
+	z-index: 1;
+	display: grid;
+	place-items: center;
+	width: 2.5rem;
+	height: 2.5rem;
+	border-radius: 50%;
+	background: var(--ink);
+	color: var(--bg);
+	font-family: var(--mono);
+	font-size: 1rem;
+	font-weight: 500;
+}
+
+/* The line runs from each dot to the next one. */
+.steps li:not(:last-child)::before {
+	content: '';
+	position: absolute;
+	top: 1.25rem;
+	right: -1.5rem;
+	left: 2.5rem;
+	height: 2px;
+	translate: 0 -50%;
+	background: var(--ink);
+}
+
+/* A small arrow on the line shows the direction, as flow is marked on a pipe. */
+.steps li:not(:last-child)::after {
+	content: '';
+	position: absolute;
+	top: 1.25rem;
+	left: calc(50% + 2rem);
+	translate: -50% -50%;
+	border-block: 5px solid transparent;
+	border-left: 8px solid var(--ink);
+}
+
+/* How long the stage takes: a small label between the dot and the title, shown when the data has it */
+.steps__time {
+	display: block;
+	margin-top: 0.9rem;
+	color: var(--ink-2);
+	font-family: var(--mono);
+	font-size: 0.72rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.steps h3 {
+	margin-top: 0.9rem;
+	font-size: 1.1rem;
+}
+
+.steps__time + h3 {
+	margin-top: 0.2rem;
+}
+
+.steps p {
+	max-width: 15.5rem;
+	margin-top: 0.35rem;
+	color: var(--ink-2);
+	font-size: 0.95rem;
+}
+
+/* Sample values (figures, durations) stay labelled on the page until the client's real ones replace them. */
+.sample-note {
+	margin-top: 0.9rem;
+	color: var(--ink-2);
+	font-size: 0.8rem;
+}
+
+.sample-note--facts {
+	margin: -0.35rem 0 1rem;
+}
+
+/*
+ * Realizacje: three tiles with numbers of finished jobs, then the photos, in the same three columns.
+ * Each tile leads with the number; the label sits under it and a black square with a pictogram (as in the logo) in the corner.
+ */
+.facts {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1rem;
+	margin: 0 0 1rem;
+}
+
+/* The number comes first to the eye; in the markup the label stays first, as a definition list expects. */
+.fact {
+	position: relative;
+	display: flex;
+	flex-direction: column-reverse;
+	justify-content: flex-end;
+	padding: 0.85rem 3.9rem 0.9rem 1.1rem;
+	border: 1px solid var(--line);
+	background: var(--bg);
+	box-shadow: 0 1px 2px rgb(11 11 12 / 0.04), 0 10px 24px -18px rgb(11 11 12 / 0.35);
+}
+
+.fact dt {
+	margin-top: 0.2rem;
+	color: var(--ink-2);
+	font-size: 0.9rem;
+	line-height: 1.3;
+}
+
+.fact dd {
+	margin: 0;
+	font-size: 1.9rem;
+	font-weight: 600;
+	line-height: 1.05;
+	letter-spacing: -0.04em;
+}
+
+/* The plus is part of the value but quieter than the digits. */
+.fact dd i {
+	margin-left: 0.05em;
+	color: var(--ink-3);
+	font-style: normal;
+	font-weight: 500;
+}
+
+/* While the number counts up its digits keep one width, so the plus does not jump. */
+.fact .is-counting {
+	font-variant-numeric: tabular-nums;
+}
+
+.fact__icon {
+	position: absolute;
+	top: 0.85rem;
+	right: 0.85rem;
+	width: 2.25rem;
+	height: 2.25rem;
+	padding: 0.5rem;
+	background: var(--ink);
+	fill: none;
+	stroke: var(--bg);
+	stroke-width: 1.75;
+	stroke-linecap: square;
+	stroke-linejoin: miter;
+}
+
+.works {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.work {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid var(--ink);
+	background: var(--bg);
+}
+
+.work img {
+	width: 100%;
+	aspect-ratio: 3 / 2;
+	object-fit: cover;
+	border-bottom: 1px solid var(--ink);
+}
+
+.work__body {
+	display: grid;
+	gap: 0.25rem;
+	padding: 0.75rem 0.9rem 0.9rem;
+}
+
+.work p {
+	color: var(--ink-3);
+	font-size: 0.9rem;
+}
+
+/* An empty frame crossed corner to corner, the way a drawing marks a place left for a picture. */
+.work--blank {
+	border-color: var(--line);
+}
+
+.blank {
+	display: grid;
+	place-items: center;
+	aspect-ratio: 3 / 2;
+	border-bottom: 1px solid var(--line);
+	background:
+		linear-gradient(to top right, transparent calc(50% - 0.5px), var(--line) calc(50% - 0.5px), var(--line) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+		linear-gradient(to bottom right, transparent calc(50% - 0.5px), var(--line) calc(50% - 0.5px), var(--line) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+		var(--bg-alt);
+}
+
+.blank b {
+	padding: 0.2rem 0.6rem;
+	background: var(--bg-alt);
+	color: var(--ink-3);
+	font-family: var(--mono);
+	font-size: 0.72rem;
+	font-weight: 400;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.bar {
+	display: block;
+	width: 62%;
+	height: 0.6rem;
+	margin-top: 0.3rem;
+	background: var(--line);
+}
+
+.bar--short {
+	width: 86%;
+	height: 0.4rem;
+	margin-top: 0.35rem;
+	background: var(--bg-alt);
+}
+
+/*
+ * Kontakt: two columns from the top of the section. Heading and a message bar on the left,
+ * company details on the right.
+ */
+.reach {
+	display: grid;
+	grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+	gap: 2.5rem;
+}
+
+.reach__head p {
+	margin-top: 0.45rem;
+	color: var(--ink-2);
+}
+
+/* One sentence and a button; the sentence opens as a ready e-mail. */
+.composer {
+	display: flex;
+	gap: 0.4rem;
+	max-width: 44rem;
+	margin-top: 1.1rem;
+	padding: 0.35rem;
+	border: 1px solid var(--ink);
+	background: var(--bg);
+}
+
+.composer:focus-within {
+	outline: 2px solid var(--ink);
+	outline-offset: 2px;
+}
+
+.composer input[type='text'] {
+	flex: 1;
+	min-width: 0;
+	padding: 0.5rem 0.75rem;
+	border: 0;
+	background: transparent;
+	color: var(--ink);
+	font: inherit;
+}
+
+.composer input[type='text']:focus-visible {
+	outline: none;
+}
+
+.composer input::placeholder {
+	color: var(--ink-3);
+	opacity: 1;
+}
+
+.composer__note {
+	margin-top: 0.7rem;
+	color: var(--ink-2);
+	font-size: 0.9rem;
+}
+
+/* Company details as the title block of a drawing */
+.block {
+	align-self: start;
+	border: 1px solid var(--ink);
+	background: var(--bg);
+	font-style: normal;
+}
+
+.block dl {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	margin: 0;
+}
+
+.block dl > div {
+	padding: 0.5rem 0.9rem 0.6rem;
+	border-bottom: 1px solid var(--ink);
+}
+
+.block dl > div:nth-last-child(-n + 2) {
+	border-bottom: 0;
+}
+
+.block dl > div:last-child {
+	border-left: 1px solid var(--ink);
+}
+
+.block__wide {
+	grid-column: 1 / -1;
+}
+
+.block dt {
+	color: var(--ink-3);
+	font-family: var(--mono);
+	font-size: 0.7rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.block dd {
+	margin: 0;
+	overflow-wrap: anywhere;
+}
+
+.block strong {
+	font-size: 1.05rem;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+}
+
+/* Footer */
+.foot {
+	border-top: 1px solid var(--line);
+	background: var(--paper-2);
+	color: var(--ink-2);
+	font-family: var(--mono);
+	font-size: 0.75rem;
+	letter-spacing: 0.03em;
+}
+
+.foot__row {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 0.25rem 1.5rem;
+	padding-block: 0.9rem;
+}
+
+/* The header button has a short label for narrow phones. */
+.top__cta .short {
+	display: none;
+}
+
+/* Section links for phones, where the header keeps only the name and the button. Scrolls away with the page. */
+.subnav {
+	display: none;
+	border-bottom: 1px solid var(--line);
+}
+
+.subnav .wrap {
+	display: flex;
+	overflow-x: auto;
+	scrollbar-width: none;
+}
+
+.subnav a {
+	flex: none;
+	padding: 0.75rem 0.7rem;
+	color: var(--ink-2);
+	font-size: 0.95rem;
+	text-decoration: none;
+}
+
+.subnav a:first-child {
+	margin-left: -0.7rem;
+}
+
+/* Smaller screens */
+@media (max-width: 62rem) {
+	.hero__grid {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.sheet {
+		max-width: 36rem;
+	}
+
+	/* The heading moves above the content. */
+	.section__grid {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.section__head p {
+		max-width: none;
+	}
+}
+
+@media (max-width: 48rem) {
+	.top__row {
+		gap: 0.75rem;
+	}
+
+	.brand__name {
+		white-space: nowrap;
+	}
+
+	.top__nav {
+		display: none;
+	}
+
+	.top__cta {
+		margin-left: auto;
+	}
+
+	.subnav {
+		display: block;
+	}
+
+	.works,
+	.reach {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.reach {
+		gap: 1.5rem;
+	}
+
+	.card {
+		padding-inline: 0.9rem;
+	}
+
+	/* One empty frame is enough on a phone. */
+	.work--spare {
+		display: none;
+	}
+
+	.facts {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 0.5rem;
+	}
+
+	/* On a phone a tile is one row: number, label, pictogram. */
+	.fact {
+		flex-direction: row-reverse;
+		align-items: baseline;
+		gap: 0.75rem;
+		padding-block: 0.8rem;
+	}
+
+	.fact__icon {
+		top: 50%;
+		translate: 0 -50%;
+	}
+
+	.fact dt {
+		margin-top: 0;
+	}
+
+	.fact dd {
+		flex: none;
+		min-width: 4.4rem;
+		font-size: 1.6rem;
+	}
+
+	/* Steps turn into a vertical line: dots on the left, text beside them. */
+	.steps {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 1.25rem;
+	}
+
+	.steps li {
+		padding-left: 3.5rem;
+	}
+
+	.steps__dot {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	.steps li:not(:last-child)::before {
+		top: 2.5rem;
+		right: auto;
+		bottom: -1.25rem;
+		left: 1.25rem;
+		width: 2px;
+		height: auto;
+		translate: -50% 0;
+	}
+
+	.steps li:not(:last-child)::after {
+		display: none;
+	}
+
+	.steps h3,
+	.steps__time {
+		margin-top: 0;
+		padding-top: 0.5rem;
+	}
+
+	.steps__time + h3 {
+		padding-top: 0;
+	}
+
+	.steps p {
+		max-width: 30rem;
+	}
+
+	.scope td {
+		width: 5.5rem;
+	}
+
+	.scope th,
+	.scope td {
+		padding-inline: 0.4rem;
+	}
+
+	.scope tbody th {
+		font-size: 1rem;
+	}
+
+	.scope tbody th small {
+		display: block;
+		margin: 0.1rem 0 0;
+	}
+}
+
+@media (max-width: 26rem) {
+	.brand__name small {
+		display: none;
+	}
+
+	.button--small {
+		padding-inline: 0.8rem;
+	}
+
+	.top__cta .long {
+		display: none;
+	}
+
+	.top__cta .short {
+		display: inline;
+	}
+
+	.hero__actions .button {
+		flex: 1 1 100%;
+	}
+
+	/* On phones the field and the button stack. */
+	.composer {
+		flex-direction: column;
+	}
+
+	.sheet__drawing {
+		padding: 0.6rem 0.5rem 0.3rem;
+	}
+
+	/* At this size the labels inside the drawing are too small to read; the legend below says the same. */
+	.d-text,
+	.d-mark text {
+		display: none;
+	}
+
+	.legend {
+		padding-inline: 0.75rem;
+	}
+
+	.sheet__caption p {
+		padding-inline: 0.75rem;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	* {
+		transition: none !important;
+	}
+}

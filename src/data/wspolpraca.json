@@ -1,0 +1,26 @@
+[
+	{
+		"tytul": "Zapytanie",
+		"czas": "1 dzień",
+		"przyklad": true,
+		"tekst": "Opisujesz budynek i zakres: jakie instalacje, projekt, wykonanie czy jedno i drugie."
+	},
+	{
+		"tytul": "Wycena",
+		"czas": "2–3 dni",
+		"przyklad": true,
+		"tekst": "Ustalamy szczegóły i przedstawiamy wycenę prac."
+	},
+	{
+		"tytul": "Projekt",
+		"czas": "2–4 tygodnie",
+		"przyklad": true,
+		"tekst": "Projektujemy instalacje wewnętrzne i zewnętrzne, a także sieci i przyłącza."
+	},
+	{
+		"tytul": "Wykonanie",
+		"czas": "1–3 tygodnie",
+		"przyklad": true,
+		"tekst": "Wykonujemy instalacje wod‑kan, c.o., wentylacji i gazu w budynku."
+	}
+]

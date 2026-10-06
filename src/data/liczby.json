@@ -1,0 +1,5 @@
+[
+	{ "wartosc": "100+", "opis": "Zrealizowane zlecenia", "ikona": "razem", "przyklad": true },
+	{ "wartosc": "60+", "opis": "Projekty instalacji", "ikona": "projekt", "przyklad": true },
+	{ "wartosc": "40+", "opis": "Wykonane instalacje", "ikona": "wykonanie", "przyklad": true }
+]

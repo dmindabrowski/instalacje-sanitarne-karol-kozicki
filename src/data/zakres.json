@@ -1,0 +1,10 @@
+{
+	"instalacje": [
+		{ "nazwa": "Instalacje wodno-kanalizacyjne", "skrot": "wod-kan", "projekt": true, "wykonanie": true },
+		{ "nazwa": "Centralne ogrzewanie", "skrot": "c.o.", "projekt": true, "wykonanie": true },
+		{ "nazwa": "Wentylacja", "skrot": "", "projekt": true, "wykonanie": true },
+		{ "nazwa": "Instalacje gazowe", "skrot": "", "projekt": true, "wykonanie": true },
+		{ "nazwa": "Sieci wodociągowe i kanalizacyjne", "skrot": "", "projekt": true, "wykonanie": false },
+		{ "nazwa": "Przyłącza", "skrot": "", "projekt": true, "wykonanie": false }
+	]
+}

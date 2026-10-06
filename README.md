@@ -35,7 +35,7 @@ Obok znaku stoi nazwa firmy (pismo IBM Plex Sans) i nazwisko właściciela wersa
 - **Wersje:** logo podstawowe, logo odwrócone na ciemne tło i sam znak do ikon i profili.
 - **Pliki:** SVG do druku i PNG do dokumentów, w katalogu [`logo/`](logo/). Napis jest zamieniony na krzywe, więc do drukarni nie trzeba dołączać fontu.
 
-Pełny opis logo, z polem ochronnym, najmniejszymi rozmiarami i zasadami użycia: [logo/README.md](logo/README.md).
+Pełny opis logo, z polem ochronnym, najmniejszymi rozmiarami i zasadami użycia: [logo/README.md](logo/README.md). To samo w jednym pliku dla klienta: [księga znaku (PDF, 6 stron)](logo/Inzynieria-Sanitarna-ksiega-znaku.pdf).
 
 ### Strona
 

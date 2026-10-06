@@ -13,7 +13,7 @@ Strona firmowa klienta: Inżynieria Sanitarna Karol Kozicki (Ełk), firma projek
 - `src/layouts/Layout.astro`: nagłówek, menu i stopka. W stopce zostaje dopisek „Projekt i realizacja: Solvy.pl".
 - `src/pages/index.astro`: treść strony, sekcja po sekcji.
 - `src/components/Schemat.astro`: rysunek instalacji w nagłówku strony. Zaakceptowany przez właściciela, nie zmieniaj go bez wyraźnej prośby.
-- `logo/`: logo i znak firmy (SVG i PNG, wersja czarna i odwrócona), podgląd w `logo/podglad.html`, opis logo i zasady użycia w `logo/README.md`. Te pliki nie trafiają na stronę.
+- `logo/`: logo i znak firmy (SVG i PNG, wersja czarna i odwrócona), podgląd w `logo/podglad.html`, opis logo i zasady użycia w `logo/README.md`, księga znaku dla klienta w `logo/Inzynieria-Sanitarna-ksiega-znaku.pdf` (źródło: `logo/ksiega-znaku.html`). Te pliki nie trafiają na stronę.
 - `README.md` i `docs/`: opis projektu dla właściciela i klienta (bez szczegółów technicznych) oraz obrazki do niego.
 - `.github/workflows/pages.yml`: po każdym wypchnięciu na `main` buduje stronę i publikuje podgląd na GitHub Pages (https://dmindabrowski.github.io/instalacje-sanitarne-karol-kozicki/). Podgląd leży w podkatalogu, dlatego odnośniki w `Layout.astro` zaczynają się od `base`; nie wpisuj ścieżek od `/` na sztywno.
 - `src/styles/global.css`: wszystkie style, kolory w zmiennych CSS na górze pliku.

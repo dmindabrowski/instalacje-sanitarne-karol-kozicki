@@ -1,0 +1,848 @@
+<!doctype html>
+<!--
+	Źródło pliku PDF „Inzynieria-Sanitarna-ksiega-znaku.pdf".
+	Po zmianach wygeneruj PDF ponownie: otwórz ten plik w Chrome i wybierz Drukuj → Zapisz jako PDF
+	(A4, marginesy: brak, grafika w tle: włączona).
+-->
+<html lang="pl">
+	<head>
+		<meta charset="utf-8" />
+		<title>Inżynieria Sanitarna Karol Kozicki: księga znaku</title>
+		<meta name="author" content="Solvy.pl" />
+		<style>
+			@font-face {
+				font-family: 'IBM Plex Sans';
+				src: url('../public/fonts/ibm-plex-sans-latin-wght-normal.woff2') format('woff2');
+				font-weight: 100 700;
+				unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212;
+			}
+
+			@font-face {
+				font-family: 'IBM Plex Sans';
+				src: url('../public/fonts/ibm-plex-sans-latin-ext-wght-normal.woff2') format('woff2');
+				font-weight: 100 700;
+				unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C0;
+			}
+
+			@font-face {
+				font-family: 'IBM Plex Mono';
+				src: url('../public/fonts/ibm-plex-mono-latin-400-normal.woff2') format('woff2');
+				font-weight: 400;
+				unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212;
+			}
+
+			@font-face {
+				font-family: 'IBM Plex Mono';
+				src: url('../public/fonts/ibm-plex-mono-latin-ext-400-normal.woff2') format('woff2');
+				font-weight: 400;
+				unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C0;
+			}
+
+			@page {
+				size: A4;
+				margin: 0;
+			}
+
+			:root {
+				--ink: #0b0b0c;
+				--ink-2: #3f4245;
+				--ink-3: #686c70;
+				--line: #d8d8d4;
+				--paper: #f2f2ef;
+				--grid: #f0f0ed;
+				--sans: 'IBM Plex Sans', system-ui, sans-serif;
+				--mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			html {
+				-webkit-print-color-adjust: exact;
+				print-color-adjust: exact;
+			}
+
+			body {
+				margin: 0;
+				color: var(--ink);
+				font-family: var(--sans);
+				font-size: 10.5pt;
+				line-height: 1.5;
+			}
+
+			img,
+			svg {
+				display: block;
+			}
+
+			p {
+				margin: 0;
+			}
+
+			/* One sheet of A4 */
+			.page {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				width: 210mm;
+				height: 297mm;
+				padding: 20mm 20mm 0;
+				overflow: hidden;
+				page-break-after: always;
+				background: #fff;
+			}
+
+			.page:last-child {
+				page-break-after: auto;
+			}
+
+			.mono {
+				font-family: var(--mono);
+				font-size: 7.5pt;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+			}
+
+			/* Section number, heading and one sentence of introduction */
+			.head {
+				margin-bottom: 11mm;
+				padding-bottom: 6mm;
+				border-bottom: 0.35mm solid var(--ink);
+			}
+
+			.head .mono {
+				color: var(--ink-3);
+			}
+
+			h1 {
+				margin: 0;
+				font-size: 40pt;
+				font-weight: 600;
+				line-height: 1.05;
+				letter-spacing: -0.035em;
+			}
+
+			h2 {
+				margin: 1.5mm 0 0;
+				font-size: 24pt;
+				font-weight: 600;
+				line-height: 1.1;
+				letter-spacing: -0.03em;
+			}
+
+			h3 {
+				margin: 0 0 1.5mm;
+				font-size: 11.5pt;
+				font-weight: 600;
+				letter-spacing: -0.01em;
+			}
+
+			.lead {
+				max-width: 150mm;
+				text-wrap: balance;
+				margin-top: 3mm;
+				color: var(--ink-2);
+				font-size: 12pt;
+				line-height: 1.45;
+			}
+
+			.text {
+				max-width: 150mm;
+				color: var(--ink-2);
+			}
+
+			.text + .text {
+				margin-top: 2.5mm;
+			}
+
+			.note {
+				color: var(--ink-3);
+				font-size: 8.5pt;
+			}
+
+			/* Bottom strip of every sheet, like the title strip of a drawing */
+			.strip {
+				display: flex;
+				justify-content: space-between;
+				margin: auto -20mm 0;
+				padding: 4.5mm 20mm;
+				border-top: 0.35mm solid var(--ink);
+				color: var(--ink-3);
+			}
+
+			/* Cover */
+			.cover {
+				background:
+					linear-gradient(var(--grid) 0.25mm, transparent 0.25mm) 0 0 / 6mm 6mm,
+					linear-gradient(90deg, var(--grid) 0.25mm, transparent 0.25mm) 0 0 / 6mm 6mm,
+					#fff;
+			}
+
+			.cover__logo {
+				width: 128mm;
+				margin-top: 62mm;
+			}
+
+			.cover__title {
+				margin-top: 46mm;
+			}
+
+			.cover__sub {
+				margin-top: 3mm;
+				color: var(--ink-3);
+				font-size: 16pt;
+				letter-spacing: -0.01em;
+			}
+
+			.block {
+				display: grid;
+				grid-template-columns: 2.1fr 0.9fr 1.1fr 0.6fr;
+				margin: auto 0 20mm;
+				border: 0.35mm solid var(--ink);
+				background: #fff;
+			}
+
+			.block div {
+				padding: 2.5mm 3.5mm 3mm;
+			}
+
+			.block div + div {
+				border-left: 0.35mm solid var(--ink);
+			}
+
+			.block .mono {
+				display: block;
+				margin-bottom: 0.5mm;
+				color: var(--ink-3);
+				font-size: 6.5pt;
+			}
+
+			/* 01 Znak */
+			.anatomy {
+				width: 150mm;
+				margin: 2mm 0 9mm;
+			}
+
+			.anatomy text {
+				fill: var(--ink-2);
+				font-family: var(--mono);
+				font-size: 1.45px;
+				letter-spacing: 0.08em;
+			}
+
+			.cols {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 10mm;
+			}
+
+			.cols .text {
+				max-width: none;
+				margin-top: 0;
+			}
+
+			.lockup {
+				margin-top: 10mm;
+				padding: 12mm 12mm 10mm;
+				border: 0.25mm solid var(--line);
+				background: var(--paper);
+			}
+
+			.lockup img {
+				width: 104mm;
+			}
+
+			.lockup dl {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 6mm;
+				margin: 9mm 0 0;
+			}
+
+			.lockup dt {
+				color: var(--ink-3);
+			}
+
+			.lockup dd {
+				margin: 0.5mm 0 0;
+				color: var(--ink-2);
+				font-size: 9.5pt;
+				line-height: 1.4;
+			}
+
+			/* 02 Wersje */
+			.versions {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 8mm;
+			}
+
+			.version__box {
+				display: grid;
+				place-items: center;
+				height: 76mm;
+				border: 0.25mm solid var(--line);
+				background: #fff;
+			}
+
+			.version__box--dark {
+				border-color: var(--ink);
+				background: var(--ink);
+			}
+
+			.version__box--paper {
+				background: var(--paper);
+			}
+
+			.version h3 {
+				margin-top: 3.5mm;
+			}
+
+			.version p {
+				color: var(--ink-2);
+				font-size: 9.5pt;
+				line-height: 1.4;
+			}
+
+			/* 03 Kolory i pismo */
+			.swatches {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 5mm;
+			}
+
+			.swatch__chip {
+				height: 38mm;
+				border: 0.25mm solid var(--line);
+			}
+
+			.swatch h3 {
+				margin-top: 3mm;
+			}
+
+			.swatch dl {
+				margin: 0;
+				font-family: var(--mono);
+				font-size: 8pt;
+				line-height: 1.6;
+			}
+
+			.swatch dl div {
+				display: flex;
+				gap: 2mm;
+			}
+
+			.swatch dt {
+				width: 9mm;
+				color: var(--ink-3);
+			}
+
+			.swatch dd {
+				margin: 0;
+			}
+
+			.swatch p {
+				margin-top: 1.5mm;
+				color: var(--ink-2);
+				font-size: 8.5pt;
+				line-height: 1.35;
+			}
+
+			.rule {
+				margin: 11mm 0 8mm;
+				border: 0;
+				border-top: 0.25mm solid var(--line);
+			}
+
+			.type {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 10mm;
+			}
+
+			.type__sample {
+				font-size: 22pt;
+				white-space: nowrap;
+				font-weight: 600;
+				line-height: 1.1;
+				letter-spacing: -0.015em;
+			}
+
+			.type__sample--mono {
+				color: var(--ink-3);
+				font-family: var(--mono);
+				font-size: 17pt;
+				font-weight: 400;
+				line-height: 1.42;
+				letter-spacing: 0.06em;
+			}
+
+			.type__abc {
+				margin: 3mm 0;
+				color: var(--ink-2);
+				font-size: 10pt;
+				line-height: 1.5;
+				overflow-wrap: anywhere;
+			}
+
+			.type__abc--mono {
+				font-family: var(--mono);
+				font-size: 9pt;
+			}
+
+			/* 04 Zasady użycia */
+			.space {
+				width: 150mm;
+				margin-top: 2mm;
+			}
+
+			.rules {
+				display: grid;
+				grid-template-columns: 1.15fr 1fr;
+				gap: 10mm;
+				margin-top: 7mm;
+			}
+
+			.sizes {
+				display: flex;
+				align-items: flex-end;
+				gap: 9mm;
+				margin-top: 3mm;
+			}
+
+			.sizes figure {
+				margin: 0;
+			}
+
+			.sizes figcaption {
+				margin-top: 2mm;
+				color: var(--ink-3);
+				white-space: nowrap;
+			}
+
+			.donts {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 5mm;
+				margin-top: 3mm;
+			}
+
+			.dont__box {
+				position: relative;
+				display: grid;
+				place-items: center;
+				height: 27mm;
+				border: 0.25mm solid var(--line);
+				background: #fff;
+				overflow: hidden;
+			}
+
+			.dont__box img {
+				width: 31mm;
+			}
+
+			/* The cross that marks a forbidden use */
+			.dont__box::after {
+				content: '';
+				position: absolute;
+				top: 1.5mm;
+				right: 1.5mm;
+				width: 4.5mm;
+				height: 4.5mm;
+				background:
+					linear-gradient(45deg, transparent 46%, #fff 46% 54%, transparent 54%),
+					linear-gradient(-45deg, transparent 46%, #fff 46% 54%, transparent 54%),
+					var(--ink);
+			}
+
+			.dont p {
+				margin-top: 1.5mm;
+				color: var(--ink-2);
+				font-size: 8.5pt;
+				line-height: 1.35;
+			}
+
+			/* 05 Pliki */
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				font-size: 9.5pt;
+			}
+
+			th,
+			td {
+				padding: 2.6mm 3mm 2.6mm 0;
+				border-bottom: 0.25mm solid var(--line);
+				text-align: left;
+				vertical-align: top;
+			}
+
+			thead th {
+				padding-block: 2mm;
+				border-bottom: 0.35mm solid var(--ink);
+				color: var(--ink-3);
+				font-family: var(--mono);
+				font-size: 7pt;
+				font-weight: 400;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+			}
+
+			td:first-child {
+				font-family: var(--mono);
+				font-size: 8.5pt;
+				white-space: nowrap;
+			}
+
+			td {
+				color: var(--ink-2);
+			}
+
+			td strong {
+				color: var(--ink);
+				font-weight: 600;
+			}
+
+			.two {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 10mm;
+				margin-top: 10mm;
+			}
+
+			ul {
+				margin: 0;
+				padding-left: 4.5mm;
+				color: var(--ink-2);
+			}
+
+			li + li {
+				margin-top: 1mm;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Okładka -->
+		<section class="page cover">
+			<p class="mono" style="color: var(--ink-3)">Księga znaku · wersja 1.0</p>
+			<img class="cover__logo" src="logo.svg" alt="Logo Inżynieria Sanitarna Karol Kozicki" />
+			<h1 class="cover__title">Księga znaku</h1>
+			<p class="cover__sub">Logo, kolory i zasady użycia</p>
+
+			<div class="block">
+				<div><span class="mono">Firma</span>Inżynieria Sanitarna Karol Kozicki</div>
+				<div><span class="mono">Projekt</span>Solvy.pl</div>
+				<div><span class="mono">Data</span>październik 2026</div>
+				<div><span class="mono">Arkuszy</span>6</div>
+			</div>
+		</section>
+
+		<!-- 01 Znak -->
+		<section class="page">
+			<header class="head">
+				<p class="mono">01</p>
+				<h2>Znak</h2>
+				<p class="lead">Symbol zaworu z rysunku instalacji: biały na czarnym kwadracie.</p>
+			</header>
+
+			<svg class="anatomy" viewBox="0 0 68 32" role="img" aria-label="Budowa znaku: pokrętło, trzpień i zawór">
+				<rect width="32" height="32" fill="#0b0b0c" />
+				<path d="M6 12v12l10-6zM26 12v12l-10-6z" fill="#fff" />
+				<path d="M16 18V8M11 8h10" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="square" />
+				<g fill="none" stroke="#686c70" stroke-width="0.14">
+					<path d="M33 8h8M33 13h8M33 19.500h8" />
+				</g>
+				<text x="42.500" y="8.500">POKRĘTŁO</text>
+				<text x="42.500" y="13.500">TRZPIEŃ</text>
+				<text x="42.500" y="20">ZAWÓR: DWA TRÓJKĄTY</text>
+			</svg>
+
+			<div class="cols">
+				<p class="text">
+					Dwa trójkąty stykające się wierzchołkami, a&nbsp;nad nimi trzpień z&nbsp;pokrętłem. Tak oznacza się zawór na każdym projekcie instalacji
+					wodno-kanalizacyjnej, grzewczej czy gazowej.
+				</p>
+				<p class="text">
+					Znak od razu mówi, czym firma się zajmuje, i&nbsp;łączy obie jej role: projektowanie i&nbsp;wykonawstwo. Jest na tyle prosty, że pozostaje
+					czytelny nawet jako ikona wielkości kilku milimetrów.
+				</p>
+			</div>
+
+			<div class="lockup">
+				<img src="logo.svg" alt="" />
+				<dl>
+					<div>
+						<dt class="mono">Znak</dt>
+						<dd>Czarny kwadrat z&nbsp;białym symbolem zaworu.</dd>
+					</div>
+					<div>
+						<dt class="mono">Nazwa firmy</dt>
+						<dd>Pismo IBM Plex Sans, odmiana półgruba, czarne.</dd>
+					</div>
+					<div>
+						<dt class="mono">Nazwisko</dt>
+						<dd>Pismo IBM Plex Mono, wersaliki, szare. Jak opis na rysunku technicznym.</dd>
+					</div>
+				</dl>
+			</div>
+
+			<footer class="strip mono"><span>Inżynieria Sanitarna Karol Kozicki · księga znaku</span><span>2 / 6</span></footer>
+		</section>
+
+		<!-- 02 Wersje -->
+		<section class="page">
+			<header class="head">
+				<p class="mono">02</p>
+				<h2>Wersje</h2>
+				<p class="lead">Cztery wersje pokrywają wszystkie sytuacje. Innych nie trzeba tworzyć.</p>
+			</header>
+
+			<div class="versions">
+				<div class="version">
+					<div class="version__box"><img src="logo.svg" alt="" style="width: 66mm" /></div>
+					<h3>Logo podstawowe</h3>
+					<p>Na białym i&nbsp;bardzo jasnym tle: strona, dokumenty, pieczątka, wizytówka, oznakowanie samochodu.</p>
+				</div>
+				<div class="version">
+					<div class="version__box version__box--dark"><img src="logo-odwrocone.svg" alt="" style="width: 66mm" /></div>
+					<h3>Logo odwrócone</h3>
+					<p>Na czarnym i&nbsp;bardzo ciemnym tle, na przykład na odzieży roboczej albo ciemnej teczce.</p>
+				</div>
+				<div class="version">
+					<div class="version__box version__box--paper"><img src="znak.svg" alt="" style="width: 26mm" /></div>
+					<h3>Znak</h3>
+					<p>Gdy jest mało miejsca: ikona strony, zdjęcie profilowe w&nbsp;serwisach, naklejka, plomba.</p>
+				</div>
+				<div class="version">
+					<div class="version__box version__box--dark"><img src="znak-odwrocony.svg" alt="" style="width: 26mm" /></div>
+					<h3>Znak odwrócony</h3>
+					<p>Sam znak na ciemnym tle.</p>
+				</div>
+			</div>
+
+			<footer class="strip mono"><span>Inżynieria Sanitarna Karol Kozicki · księga znaku</span><span>3 / 6</span></footer>
+		</section>
+
+		<!-- 03 Kolory i pismo -->
+		<section class="page">
+			<header class="head">
+				<p class="mono">03</p>
+				<h2>Kolory i&nbsp;pismo</h2>
+				<p class="lead">Tylko czerń, biel i&nbsp;szarość. Firma nie ma koloru dodatkowego.</p>
+			</header>
+
+			<div class="swatches">
+				<div class="swatch">
+					<div class="swatch__chip" style="background: #0b0b0c; border-color: #0b0b0c"></div>
+					<h3>Czerń</h3>
+					<dl>
+						<div><dt>HEX</dt><dd>#0B0B0C</dd></div>
+						<div><dt>RGB</dt><dd>11 / 11 / 12</dd></div>
+						<div><dt>Druk</dt><dd>K 100</dd></div>
+					</dl>
+					<p>Kwadrat znaku, nazwa firmy.</p>
+				</div>
+				<div class="swatch">
+					<div class="swatch__chip" style="background: #ffffff"></div>
+					<h3>Biel</h3>
+					<dl>
+						<div><dt>HEX</dt><dd>#FFFFFF</dd></div>
+						<div><dt>RGB</dt><dd>255 / 255 / 255</dd></div>
+						<div><dt>Druk</dt><dd>bez farby</dd></div>
+					</dl>
+					<p>Symbol zaworu, tło.</p>
+				</div>
+				<div class="swatch">
+					<div class="swatch__chip" style="background: #686c70; border-color: #686c70"></div>
+					<h3>Szarość</h3>
+					<dl>
+						<div><dt>HEX</dt><dd>#686C70</dd></div>
+						<div><dt>RGB</dt><dd>104 / 108 / 112</dd></div>
+						<div><dt>Druk</dt><dd>ok. K 60</dd></div>
+					</dl>
+					<p>Nazwisko na jasnym tle.</p>
+				</div>
+				<div class="swatch">
+					<div class="swatch__chip" style="background: #bcbebd; border-color: #bcbebd"></div>
+					<h3>Jasna szarość</h3>
+					<dl>
+						<div><dt>HEX</dt><dd>#BCBEBD</dd></div>
+						<div><dt>RGB</dt><dd>188 / 190 / 189</dd></div>
+						<div><dt>Druk</dt><dd>ok. K 25</dd></div>
+					</dl>
+					<p>Nazwisko na ciemnym tle.</p>
+				</div>
+			</div>
+
+			<p class="note" style="margin-top: 5mm">
+				Wartości do druku są orientacyjne; ostateczny odcień szarości warto potwierdzić z&nbsp;drukarnią na próbnym wydruku. W&nbsp;druku jednokolorowym
+				szarość można zastąpić czernią.
+			</p>
+
+			<hr class="rule" />
+
+			<div class="type">
+				<div>
+					<p class="mono" style="color: var(--ink-3)">Nazwa firmy</p>
+					<p class="type__sample">Inżynieria Sanitarna</p>
+					<p class="type__abc">AĄBCĆDEĘFGHIJKLŁMNŃOÓPRSŚTUWYZŹŻ<br />aąbcćdeęfghijklłmnńoóprsśtuwyzźż 0123456789</p>
+					<h3>IBM Plex Sans, odmiana półgruba</h3>
+					<p class="note">Także pismo tekstów na stronie internetowej.</p>
+				</div>
+				<div>
+					<p class="mono" style="color: var(--ink-3)">Nazwisko</p>
+					<p class="type__sample type__sample--mono">KAROL KOZICKI</p>
+					<p class="type__abc type__abc--mono">AĄBCĆDEĘFGHIJKLŁMNŃOÓPRSŚTUWYZŹŻ<br />0123456789</p>
+					<h3>IBM Plex Mono, odmiana zwykła</h3>
+					<p class="note">Wersaliki, litery lekko rozstrzelone.</p>
+				</div>
+			</div>
+
+			<p class="note" style="margin-top: 7mm">
+				Oba pisma są bezpłatne, także do użytku firmowego (licencja SIL Open Font License 1.1). W&nbsp;plikach logo napis jest zamieniony na krzywe,
+				więc do używania logo nie trzeba ich instalować.
+			</p>
+
+			<footer class="strip mono"><span>Inżynieria Sanitarna Karol Kozicki · księga znaku</span><span>4 / 6</span></footer>
+		</section>
+
+		<!-- 04 Zasady użycia -->
+		<section class="page">
+			<header class="head">
+				<p class="mono">04</p>
+				<h2>Zasady użycia</h2>
+				<p class="lead">Trzy proste reguły wystarczą, żeby logo wszędzie wyglądało tak samo.</p>
+			</header>
+
+			<h3>Pole ochronne</h3>
+			<p class="text">Wokół logo zostaje wolne miejsce równe co najmniej połowie wysokości znaku. Nie wstawiamy tam tekstu ani innych grafik.</p>
+			<img class="space" src="pole-ochronne.svg" alt="Pole ochronne: połowa wysokości znaku z każdej strony" />
+
+			<div class="rules">
+				<div>
+					<h3>Najmniejszy rozmiar</h3>
+					<p class="text">Poniżej tych wielkości nazwisko przestaje być czytelne. Wtedy używamy samego znaku.</p>
+					<div class="sizes">
+						<figure>
+							<img src="logo.svg" alt="" style="height: 10mm" />
+							<figcaption class="mono">Logo: 10 mm</figcaption>
+						</figure>
+						<figure>
+							<img src="znak.svg" alt="" style="height: 5mm" />
+							<figcaption class="mono">Znak: 5 mm</figcaption>
+						</figure>
+					</div>
+					<p class="note" style="margin-top: 2.5mm">Na wydruku w&nbsp;skali 100% powyższe przykłady mają rzeczywistą wielkość. Na ekranie: logo 28 pikseli wysokości, znak 16 pikseli.</p>
+				</div>
+				<div>
+					<h3>Tło</h3>
+					<p class="text">
+						Logo podstawowe stoi na białym lub bardzo jasnym tle, odwrócone na czarnym lub bardzo ciemnym. Na zdjęciu tylko tam, gdzie tło jest spokojne
+						i&nbsp;jednolite.
+					</p>
+				</div>
+			</div>
+
+			<h3 style="margin-top: 8mm">Czego nie robić</h3>
+			<div class="donts">
+				<div class="dont">
+					<div class="dont__box"><img src="logo.svg" alt="" style="transform: scaleX(1.25) scaleY(0.7)" /></div>
+					<p>Nie rozciągać ani nie ściskać.</p>
+				</div>
+				<div class="dont">
+					<div class="dont__box"><img src="logo.svg" alt="" style="filter: invert(0.35) sepia(1) saturate(6) hue-rotate(175deg)" /></div>
+					<p>Nie zmieniać kolorów.</p>
+				</div>
+				<div class="dont">
+					<div class="dont__box"><img src="logo.svg" alt="" style="transform: rotate(-14deg)" /></div>
+					<p>Nie obracać ani nie pochylać.</p>
+				</div>
+				<div class="dont">
+					<div class="dont__box"><img src="logo.svg" alt="" style="filter: drop-shadow(1.2mm 1.2mm 0.8mm rgb(0 0 0 / 0.55))" /></div>
+					<p>Nie dodawać cieni, obrysów, gradientów.</p>
+				</div>
+			</div>
+			<p class="note" style="margin-top: 3mm">Nie przepisujemy też nazwy innym pismem, nie zmieniamy układu znaku względem napisu i&nbsp;nie zaokrąglamy rogów kwadratu.</p>
+
+			<footer class="strip mono"><span>Inżynieria Sanitarna Karol Kozicki · księga znaku</span><span>5 / 6</span></footer>
+		</section>
+
+		<!-- 05 Pliki -->
+		<section class="page">
+			<header class="head">
+				<p class="mono">05</p>
+				<h2>Pliki</h2>
+				<p class="lead">Do drukarni wysyłamy pliki SVG, do dokumentów i&nbsp;poczty wstawiamy PNG.</p>
+			</header>
+
+			<table>
+				<thead>
+					<tr>
+						<th>Plik</th>
+						<th>Zawartość</th>
+						<th>Do czego</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>logo.svg</td>
+						<td><strong>Logo podstawowe</strong>, wektor</td>
+						<td>druk, szyldy, oklejenie samochodu, strona</td>
+					</tr>
+					<tr>
+						<td>logo.png</td>
+						<td>Logo podstawowe, 1520 × 240 px, przezroczyste tło</td>
+						<td>dokumenty, oferty, stopka e-maila</td>
+					</tr>
+					<tr>
+						<td>logo-odwrocone.svg</td>
+						<td><strong>Logo na ciemne tło</strong>, wektor</td>
+						<td>druk i&nbsp;haft na ciemnych materiałach</td>
+					</tr>
+					<tr>
+						<td>logo-odwrocone.png</td>
+						<td>Logo na ciemne tło, 1520 × 240 px, przezroczyste tło</td>
+						<td>prezentacje, ciemne grafiki</td>
+					</tr>
+					<tr>
+						<td>znak.svg, znak.png</td>
+						<td><strong>Sam znak</strong>; PNG 512 × 512 px</td>
+						<td>ikony, zdjęcia profilowe, naklejki</td>
+					</tr>
+					<tr>
+						<td>znak-odwrocony.svg, .png</td>
+						<td>Sam znak na ciemne tło</td>
+						<td>ikony na ciemnym tle</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="two">
+				<div>
+					<h3>SVG czy PNG?</h3>
+					<p class="text">
+						SVG to plik wektorowy: można go powiększać bez utraty jakości, od wizytówki po baner. PNG to gotowy obrazek o&nbsp;stałej wielkości, wygodny do
+						wklejenia w&nbsp;dokument.
+					</p>
+				</div>
+				<div>
+					<h3>Gdzie logo jest już użyte</h3>
+					<ul>
+						<li>nagłówek strony internetowej,</li>
+						<li>ikona strony w&nbsp;karcie przeglądarki i&nbsp;na ekranie telefonu,</li>
+						<li>obrazek pokazywany przy udostępnianiu linku do strony.</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="block" style="grid-template-columns: 1.3fr 1fr 1fr; margin-top: auto; margin-bottom: 14mm">
+				<div><span class="mono">Projekt logo i&nbsp;strony</span>Solvy.pl</div>
+				<div><span class="mono">Kontakt</span>kontakt@solvy.pl</div>
+				<div><span class="mono">Wersja</span>1.0, październik 2026</div>
+			</div>
+
+			<footer class="strip mono" style="margin-top: 0"><span>Inżynieria Sanitarna Karol Kozicki · księga znaku</span><span>6 / 6</span></footer>
+		</section>
+	</body>
+</html>

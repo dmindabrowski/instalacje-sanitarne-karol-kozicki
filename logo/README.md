@@ -9,6 +9,8 @@
 
 Logo powstało razem ze stroną firmy w październiku 2026 r. Projekt: [Solvy.pl](https://solvy.pl). Firma nie miała wcześniej znaku; jedyna wskazówka brzmiała „czarno-biało".
 
+**Wersja do wysłania klientowi lub drukarni:** [Inzynieria-Sanitarna-ksiega-znaku.pdf](Inzynieria-Sanitarna-ksiega-znaku.pdf) (6 stron A4: znak, wersje, kolory, pismo, zasady użycia, pliki).
+
 ## Pomysł
 
 Znak to **symbol zaworu z rysunku instalacji**: dwa trójkąty stykające się wierzchołkami, a nad nimi trzpień z pokrętłem. Taki symbol stoi na każdym projekcie wodno-kanalizacyjnym czy grzewczym, więc od razu mówi, czym firma się zajmuje, i łączy obie jej role: projektowanie i wykonawstwo.
@@ -71,6 +73,8 @@ Czego nie robić:
 | `znak.svg`, `znak.png` | Sam znak, PNG 512 × 512 px | ikony, profile w serwisach |
 | `znak-odwrocony.svg`, `znak-odwrocony.png` | Sam znak na ciemne tło | ikony na ciemnym tle |
 | `podglad.html` | Wszystkie wersje na jednej stronie | szybki podgląd w przeglądarce |
+| `Inzynieria-Sanitarna-ksiega-znaku.pdf` | Księga znaku, 6 stron A4 | do wysłania klientowi, drukarni, grafikowi |
+| `ksiega-znaku.html` | Źródło księgi znaku | po zmianach: otworzyć w Chrome i zapisać jako PDF |
 
 Pliki SVG są wektorowe: można je powiększać bez utraty jakości i to one powinny trafiać do drukarni. Napis jest w nich zamieniony na krzywe, więc nie trzeba dołączać fontów.
 

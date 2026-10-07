@@ -12,7 +12,7 @@ Strona firmowa klienta: Inżynieria Sanitarna Karol Kozicki (Ełk), firma projek
 - `src/assets/realizacje/`: zdjęcia realizacji.
 - `src/layouts/Layout.astro`: nagłówek, menu i stopka. W stopce zostaje dopisek „Projekt i realizacja: Solvy.pl".
 - `src/pages/index.astro`: treść strony, sekcja po sekcji.
-- `src/components/Schemat.astro`: rysunek instalacji w nagłówku strony. Zaakceptowany przez właściciela, nie zmieniaj go bez wyraźnej prośby.
+- `src/components/Schemat.astro`: rysunek instalacji w nagłówku strony. Zaakceptowany przez właściciela, nie zmieniaj go bez wyraźnej prośby. Przy wejściu rysuje się sam (budynek, potem rury, armatura i opisy); kolejność i czasy są w atrybutach `--i` / `--d` oraz w regułach `.anim` na końcu `global.css`; tempo wszystkich animacji naraz ustawia tam zmienna `--slow` (teraz 1.2).
 - `logo/`: logo i znak firmy (SVG i PNG, wersja czarna i odwrócona), podgląd w `logo/podglad.html`, opis logo i zasady użycia w `logo/README.md`, księga znaku dla klienta w `logo/Inzynieria-Sanitarna-ksiega-znaku.pdf` (źródło: `logo/ksiega-znaku.html`). Te pliki nie trafiają na stronę.
 - `README.md` i `docs/`: opis projektu dla właściciela i klienta oraz obrazki do niego. Bez informacji technicznych: te trzymamy w tym pliku.
 - Uruchomienie lokalne: `npm install`, potem `npm run dev` (http://localhost:4323). Fonty IBM Plex Sans i IBM Plex Mono: licencja SIL Open Font License 1.1 (`public/fonts/LICENSE.txt`).
@@ -27,7 +27,8 @@ Strona firmowa klienta: Inżynieria Sanitarna Karol Kozicki (Ełk), firma projek
 - Strona ma być krótka: małe odstępy między sekcjami, bez dużych czarnych płaszczyzn (czarne są tylko przyciski, linie i tekst). Sekcje pod nagłówkiem leżą na dwóch odcieniach szarego papieru (`--paper`, `--paper-2`), białe są karty. Właściciel odrzucił zarówno wersję z czarnymi panelami, jak i całkiem białą.
 - Każda sekcja ma ten sam układ: w lewej kolumnie duży szary numer (01–04), pod nim tytuł i jedno zdanie opisu, reszta kolumny pusta; treść po prawej.
 - Kontakt: formularz (typ zapytania z listy, pole wiadomości, przycisk „Wyślij"), który otwiera gotowy e-mail z typem w temacie; obok dane firmy w tabelce rysunkowej. Lista typów jest w `src/data/zakres.json` (`typyZapytan`).
-- Sekcja „Współpraca" (kropki z numerami połączone linią) jest wzorowana na solvy-www.
+- Sekcja „Współpraca" (kropki z numerami połączone linią) jest wzorowana na solvy-www. Oś rozwija się, gdy sekcja pojawi się na ekranie.
+- Animacje wejścia grają raz i tylko wtedy, gdy odwiedzający nie ma w systemie włączonego ograniczenia ruchu. Bez JavaScriptu wszystko jest po prostu widoczne. Nowy animowany element dostaje atrybut `data-reveal`.
 - Zakres prac zostaje tabelą „Projekt / Wykonanie", realizacje trzema równymi ramkami; na telefonie ramki są rzędem do przesuwania palcem.
 - Dane kontaktowe i zakres prac zmieniaj tylko w `src/data/`. Nie wpisuj ich na sztywno w stronie.
 - Firma projektuje sieci i przyłącza, ale ich nie wykonuje. Żaden tekst nie może sugerować inaczej.

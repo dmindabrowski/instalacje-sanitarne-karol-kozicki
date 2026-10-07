@@ -126,10 +126,10 @@ const zdjecie = (plik: string) => {
 			</header>
 
 			<div>
-				<ol class="steps">
+				<ol class="steps" data-reveal>
 					{
 						etapy.map((etap, nr) => (
-							<li>
+							<li style={`--i:${nr}`}>
 								<span class="steps__dot" aria-hidden="true">
 									{nr + 1}
 								</span>

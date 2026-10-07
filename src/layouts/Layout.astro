@@ -60,6 +60,13 @@ const schema = {
 					document.querySelector('meta[name="theme-color"]').content = '#0c0c0d';
 				}
 			} catch {}
+
+			// Entry animations (the drawing draws itself, the cooperation axis unrolls) need the starting state hidden before the first paint.
+			// The class is set only when they will really play; if the script at the end of the page never runs, it is taken back.
+			if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+				document.documentElement.classList.add('anim');
+				setTimeout(() => window.revealReady || document.documentElement.classList.remove('anim'), 4000);
+			}
 		</script>
 
 		<link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
@@ -145,6 +152,29 @@ const schema = {
 				</p>
 			</div>
 		</footer>
+
+		<script is:inline>
+			// Plays each entry animation once, when its element scrolls into view.
+			(() => {
+				window.revealReady = true;
+				if (!document.documentElement.classList.contains('anim')) return;
+
+				const observer = new IntersectionObserver(
+					(entries) => {
+						for (const entry of entries) {
+							if (!entry.isIntersecting) continue;
+
+							entry.target.dataset.reveal = 'run';
+							observer.unobserve(entry.target);
+						}
+					},
+					// Starts when the top of the element is a little way into the screen, however tall the element is.
+					{ rootMargin: '0px 0px -12% 0px' },
+				);
+
+				document.querySelectorAll('[data-reveal]').forEach((element) => observer.observe(element));
+			})();
+		</script>
 
 		<script is:inline>
 			// The light/dark switch. The choice is remembered on this device; without JavaScript the buttons stay hidden and the page is light.

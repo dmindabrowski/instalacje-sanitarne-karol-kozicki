@@ -5,6 +5,16 @@ const kreskiLewe = Array.from({ length: 11 }, (_, nr) => 12 + nr * 12);
 const kreskiPrawe = Array.from({ length: 9 }, (_, nr) => 456 + nr * 12);
 const zebra = [272, 282, 292, 302, 312];
 
+// The pipes in the order they are drawn on entry (`nr`); in the markup they keep their painting order.
+// Each path starts where the medium comes from: water and gas at the street, sewage at the top of the stack.
+const rury = [
+	{ id: 'kan', nr: 1, d: 'M196 66v342L0 414M227 311v9h-31M227 201v11h-31' },
+	{ id: 'woda', nr: 0, d: 'M0 392h176V150M176 290h51v6M176 180h51v6' },
+	{ id: 'co', nr: 2, d: 'M400 314v8H292v-4M346 322V212h-54v-4' },
+	{ id: 'gaz', nr: 3, d: 'M560 384h-96v-74M452 297h-28' },
+	{ id: 'went', nr: 4, d: 'M236 130h154V60M236 142h166V60M236 130v12M270 142v11m-4-5 4 5 4-5M340 142v11m-4-5 4 5 4-5' },
+];
+
 const legenda = [
 	{ klasa: 'd-woda', nazwa: 'Woda' },
 	{ klasa: 'd-kan', nazwa: 'Kanalizacja' },
@@ -14,60 +24,82 @@ const legenda = [
 ];
 ---
 
-<figure class="sheet">
+<figure class="sheet" data-reveal>
 	<svg
 		class="sheet__drawing"
 		viewBox="0 0 560 436"
 		role="img"
 		aria-label="Schematyczny przekrój domu z instalacją wody, kanalizacji, ogrzewania, gazu i wentylacji."
 	>
+		<!--
+			On entry the drawing draws itself: first the building, then pipe after pipe, then fittings and labels.
+			A dashed pipe cannot be drawn by animating its own dashes, so each pipe is revealed through a mask
+			holding the same path as one solid stroke, and it is that stroke which gets drawn. See `.d-draw` in global.css.
+		-->
+		<defs>
+			{
+				rury.map((rura) => (
+					<mask id={`rura-${rura.id}`} maskUnits="userSpaceOnUse" x="0" y="0" width="560" height="436">
+						<path class="d-draw d-draw--pipe" style={`--i:${rura.nr}`} d={rura.d} pathLength="1" fill="none" stroke="#fff" stroke-width="8" />
+					</mask>
+				))
+			}
+		</defs>
+
 		<g class="d-arch">
-			<path d="M0 330h140M440 330h120"></path>
-			{kreskiLewe.map((x) => <path d={`M${x} 330l-7 8`} />)}
-			{kreskiPrawe.map((x) => <path d={`M${x} 330l-7 8`} />)}
-			<path d="M118 112 290 34l172 78"></path>
-			<rect x="140" y="112" width="8" height="260"></rect>
-			<rect x="432" y="112" width="8" height="260"></rect>
-			<rect x="148" y="112" width="284" height="8"></rect>
-			<rect x="148" y="220" width="284" height="8"></rect>
-			<rect x="148" y="330" width="284" height="8"></rect>
-			<rect x="134" y="372" width="20" height="7"></rect>
-			<rect x="426" y="372" width="20" height="7"></rect>
-			<path d="M100 220h40"></path>
+			<path class="d-draw" style="--i:0" pathLength="1" d="M0 330h140M440 330h120"></path>
+			<g class="d-fade" style="--d:0.45s">
+				{kreskiLewe.map((x) => <path d={`M${x} 330l-7 8`} />)}
+				{kreskiPrawe.map((x) => <path d={`M${x} 330l-7 8`} />)}
+			</g>
+			<rect class="d-draw" style="--i:1" pathLength="1" x="140" y="112" width="8" height="260"></rect>
+			<rect class="d-draw" style="--i:1" pathLength="1" x="432" y="112" width="8" height="260"></rect>
+			<rect class="d-draw" style="--i:2" pathLength="1" x="148" y="330" width="284" height="8"></rect>
+			<rect class="d-draw" style="--i:3" pathLength="1" x="148" y="220" width="284" height="8"></rect>
+			<rect class="d-draw" style="--i:4" pathLength="1" x="148" y="112" width="284" height="8"></rect>
+			<path class="d-draw" style="--i:5" pathLength="1" d="M118 112 290 34l172 78"></path>
+			<rect class="d-draw" style="--i:2" pathLength="1" x="134" y="372" width="20" height="7"></rect>
+			<rect class="d-draw" style="--i:2" pathLength="1" x="426" y="372" width="20" height="7"></rect>
+			<path class="d-draw" style="--i:5" pathLength="1" d="M100 220h40"></path>
 		</g>
 
-		<g class="d-mark">
+		<g class="d-mark d-fade" style="--d:0.8s">
 			<path d="M118 330l-5-8h10zM118 220l-5-8h10z"></path>
 			<text x="108" y="322" text-anchor="end">±0,00</text>
 			<text x="108" y="212" text-anchor="end">+3,00</text>
 		</g>
 
 		<g class="d-pipe">
-			<path class="d-kan" d="M196 66v342L0 414M227 311v9h-31M227 201v11h-31"></path>
-			<path class="d-woda" d="M0 392h176V150M176 290h51v6M176 180h51v6"></path>
-			<path class="d-co" d="M400 314v8H292v-4M346 322V212h-54v-4"></path>
-			<path class="d-gaz" d="M560 384h-96v-74M452 297h-28"></path>
-			<path class="d-went" d="M236 130h154V60M236 142h166V60M236 130v12M270 142v11m-4-5 4 5 4-5M340 142v11m-4-5 4 5 4-5"></path>
+			{rury.map((rura) => <path class={`d-${rura.id}`} d={rura.d} mask={`url(#rura-${rura.id})`} />)}
 		</g>
 
 		<g class="d-part">
-			<path d="M190 66h12M384 60h24M387 53h18M396 60v-7"></path>
-			<circle cx="64" cy="392" r="8"></circle>
-			<path d="M64 392l4-5"></path>
-			<path d="M94 386v12l12-12v12z"></path>
-			<rect x="214" y="300" width="26" height="4"></rect>
-			<path d="M216 304q11 13 22 0"></path>
-			<rect x="214" y="190" width="26" height="4"></rect>
-			<path d="M216 194q11 13 22 0"></path>
-			<rect x="262" y="286" width="60" height="32"></rect>
-			<rect x="262" y="176" width="60" height="32"></rect>
-			{zebra.map((x) => <path d={`M${x} 286v32M${x} 176v32`} />)}
-			<rect x="390" y="262" width="34" height="52"></rect>
-			<circle cx="407" cy="279" r="5"></circle>
-			<rect x="452" y="284" width="24" height="26"></rect>
+			<g class="d-fade" style="--d:1.15s">
+				<circle cx="64" cy="392" r="8"></circle>
+				<path d="M64 392l4-5"></path>
+				<path d="M94 386v12l12-12v12z"></path>
+			</g>
+			<path class="d-fade" style="--d:1.2s" d="M190 66h12"></path>
+			<g class="d-fade" style="--d:1.75s">
+				<rect x="214" y="300" width="26" height="4"></rect>
+				<path d="M216 304q11 13 22 0"></path>
+				<rect x="214" y="190" width="26" height="4"></rect>
+				<path d="M216 194q11 13 22 0"></path>
+			</g>
+			<g class="d-fade" style="--d:1.3s">
+				<rect x="390" y="262" width="34" height="52"></rect>
+				<circle cx="407" cy="279" r="5"></circle>
+			</g>
+			<g class="d-fade" style="--d:2.05s">
+				<rect x="262" y="286" width="60" height="32"></rect>
+				<rect x="262" y="176" width="60" height="32"></rect>
+				{zebra.map((x) => <path d={`M${x} 286v32M${x} 176v32`} />)}
+			</g>
+			<rect class="d-fade" style="--d:2.15s" x="452" y="284" width="24" height="26"></rect>
+			<path class="d-fade" style="--d:2.6s" d="M384 60h24M387 53h18M396 60v-7"></path>
 		</g>
 
-		<g class="d-text">
+		<g class="d-text d-fade" style="--d:2.7s">
 			<text x="10" y="383">WODA</text>
 			<text x="10" y="430">KANALIZACJA</text>
 			<text x="354" y="256">C.O.</text>
